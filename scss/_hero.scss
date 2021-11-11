@@ -1,0 +1,84 @@
+.hero {
+    position: relative;
+    height: 100vh;
+    @extend %grid-center;
+}
+
+.hero-slider {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: $linear-trans;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    &.animation {
+        animation: scaling 20s linear 0s infinite alternate;
+    }
+}
+
+@keyframes scaling {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.2);
+    }
+}
+
+.substrate {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.hero-section {
+    width: 90vw;
+    @extend %flex-center;
+    flex-flow: column wrap;
+    row-gap: 1rem;
+    z-index: 10;
+    a {
+        padding: 1rem 2rem;
+        border-radius: $radius;
+        background-color: #ed1d2459;
+        color: $white;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: $space;
+        transition: $ease-trans;
+        &:hover {
+            background-color: $red-3;
+        }
+    }
+}
+
+.logo {
+    @extend %flex-center;
+    flex-flow: column wrap;
+    row-gap: 1rem;
+    color: $white;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    user-select: none;
+    img {
+        width: 10rem;
+    }
+}

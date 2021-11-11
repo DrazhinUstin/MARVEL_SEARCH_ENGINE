@@ -1,0 +1,24 @@
+$black: rgb(19, 18, 18);
+$white: rgb(255, 255, 255);
+$red: rgb(231, 97, 97);
+$red-2: rgb(202, 66, 66);
+$red-3: #ed1d24;
+$blue: rgb(68, 157, 212);
+$blue-2: rgb(21, 116, 175);
+$yellow: #e1c634;
+$radius: 0.25rem;
+$radius-2: 0.5rem;
+$space: 0.1rem;
+$ease-trans: all 0.4s ease;
+$linear-trans: all 2s linear;
+
+%grid-center {
+    display: grid;
+    place-items: center;
+}
+
+%flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

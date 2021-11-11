@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import 'config';
+@import 'hero';
+@import 'search-area';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    //background: linear-gradient(#004e92 0%, #000428 100%);
+    //background: linear-gradient(#243B55 0%, #141E30 100%);
+    //background: linear-gradient(#2C5364 0%, #0F2027 100%);
+    //background: linear-gradient(#485563 0%, #29323c 100%);
+    //background: linear-gradient(#4b6cb7 0%, #182848 100%);
+    background: linear-gradient(#3A6073 0%, #16222A 100%);
+    color: $white;
+    line-height: 1;
+}
+
+a {
+    text-decoration: none;
+}
+
+.section {
+    max-width: 1200px;
+    width: 90vw;
+    margin: 4rem auto;
+}
+
+.title {
+    @extend %flex-center;
+    margin-bottom: 4rem;
+    h2 {
+        font-size: 2.5rem;
+        letter-spacing: $space;
+        text-transform: capitalize;
+    }
+    span {
+        width: 1.5rem;
+        height: 1.5rem;
+        align-self: flex-start;
+        margin-left: 0.25rem;
+        border-radius: 50%;
+        background-color: $red;
+        color: $white;
+        line-height: 1.6;
+        text-align: center;
+    }
+}
+
+.message {
+    text-align: center;
+    font-style: italic;
+}
