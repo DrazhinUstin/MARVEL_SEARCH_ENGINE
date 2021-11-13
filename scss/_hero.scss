@@ -56,16 +56,6 @@
     z-index: 10;
     a {
         padding: 1rem 2rem;
-        border-radius: $radius;
-        background-color: #ed1d2459;
-        color: $white;
-        font-size: 1.2rem;
-        text-transform: uppercase;
-        letter-spacing: $space;
-        transition: $ease-trans;
-        &:hover {
-            background-color: $red-3;
-        }
     }
 }
 

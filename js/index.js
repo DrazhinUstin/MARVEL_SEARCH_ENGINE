@@ -1,4 +1,5 @@
-import fetchData from "./modules/fetchData.js";
+import {fetchData, paginateData, destructureHeroesData} from "./modules/dataUtils.js";
+import {displayHeroes, displayPagination, setActivePage} from "./modules/displayUtils.js";
 import setupSlider from "./modules/setupSlider.js";
 
 const form = document.querySelector('.search-form');
@@ -8,13 +9,16 @@ const paginationDOM = document.querySelector('.pagination');
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const value = input.value.trim();
+    const url = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${value}&limit=100&`;
     input.blur();
     form.classList.add('disabled');
-    heroesData = await fetchData(value);
+    heroesData = await fetchData(url);
     input.value = '';
     form.classList.remove('disabled');
     if (!heroesData) return;
-    if (Array.isArray(heroesData[0])) {
+    heroesData = destructureHeroesData(heroesData);
+    if (heroesData.length > 10) {
+        heroesData = paginateData(heroesData, 10);
         displayHeroes(heroesData[0]);
         displayPagination(heroesData);
         paginationDOM.classList.add('active');
@@ -54,39 +58,6 @@ paginationDOM.addEventListener('click', event => {
         return;
     }
 });
-
-const displayHeroes = (data) => {
-    const wrapper = document.querySelector('.search-result');
-    wrapper.innerHTML = data.map(item => {
-        return `<article>
-                    <div>
-                        <img src="${item.image}" alt="hero-image">
-                    </div>
-                    <div class="description">
-                        <h3>${item.name}</h3>
-                        <p>
-                            ${item.description.trim() ? item.description : 'No description provided...'}
-                        </p>
-                        <a href="hero.html?id=${item.id}" target="_blank">View profile</a>
-                    </div>
-                </article>`;
-    }).join('');
-};
-
-const displayPagination = (data) => {
-    paginationDOM.innerHTML = `<button class="prev-btn">
-                                <i class="fas fa-angle-double-left"></i>
-                            </button>
-                            ${data.map((_, index) => `<span class="${index === 0 ? 'active' : ''}">${index + 1}</span>`).join('')}
-                            <button class="next-btn">
-                                <i class="fas fa-angle-double-right"></i>
-                            </button>`;
-};
-
-const setActivePage = (step) => {
-    const pages = paginationDOM.querySelectorAll('span');
-    pages.forEach((page, index) => index === step ? page.classList.add('active') : page.classList.remove('active')); 
-};
 
 let heroesData;
 setupSlider();
