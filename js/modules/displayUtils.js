@@ -1,6 +1,6 @@
 const displayHeroes = (data) => {
-    const wrapper = document.querySelector('.search-result');
-    wrapper.innerHTML = data.map(item => {
+    const charactersDOM = document.querySelector('.characters-wrapper');
+    charactersDOM.innerHTML = data.map(item => {
         return `<article class="character">
                     <div>
                         <img src="${item.image}" alt="${item.name}">
@@ -17,8 +17,8 @@ const displayHeroes = (data) => {
 };
 
 const displayComics = (data) => {
-    const wrapper = document.querySelector('.comics-wrapper');
-    wrapper.innerHTML = data.map(item => {
+    const comicsDOM = document.querySelector('.comics-wrapper');
+    comicsDOM.innerHTML = data.map(item => {
         return ` <article>
                     <img src="${item.image}" alt="comic-image">
                     <div>
@@ -42,7 +42,7 @@ const displayCharacter = (data) => {
                     <h4>Series: <span>${item.series}</span></h4>
                     <h4>Stories: <span>${item.stories}</span></h4>
                     <h4>Events: <span>${item.events}</span></h4>
-                    <a href="${item.url}" class="border-btn" target="_blank">Visit Marvel profile</a>
+                    <a href="${item.url}" class="border-btn yellow" target="_blank">Visit Marvel profile</a>
                 </div>`;
     }).join('');
     titleDOM.textContent = data[0].name;

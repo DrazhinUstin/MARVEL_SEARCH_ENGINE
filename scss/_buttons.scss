@@ -1,6 +1,7 @@
 .btn-container {
-    margin: 4rem;
-    text-align: center;
+    @extend %flex-center;
+    column-gap: 2rem;
+    margin: 4rem 0;
 }
 
 .btn {
@@ -30,6 +31,12 @@
     &:hover {
         background-color: $red-3;
     }
+    &.yellow {
+        background-color: #bda41679;
+        &:hover {
+            background-color: $yellow-2;
+        }
+    }
 }
 
 .border-btn {
@@ -47,9 +54,9 @@
         background-color: $blue;
     }
     &.red {
-        border-color: $red-3;
-        &:hover {
-            background-color: $red-3;
-        }
+        @include set-border-color($red-3);
+    }
+    &.yellow {
+        @include set-border-color($yellow-2);
     }
 }

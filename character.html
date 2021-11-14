@@ -22,7 +22,37 @@
         <article class="character"></article>
         <div class="btn-container">
             <a href="#" id="get-comics-btn" class="border-btn red">Watch comics</a>
+            <a href="#" id="open-filters-btn" class="border-btn blue">Show filters</a>
         </div>
+        <form class="filters-form">
+            <div>
+                <label for="comic-title-filter">Enter the first letters of the comic title or full name:</label>
+                <input id="comic-title-filter" class="form-input" type="text" placeholder="Comic title starts with..." autocomplete="off">
+            </div>
+            <div>
+                <label for="start-year-filter">Enter start year of the comic:</label>
+                <input id="start-year-filter" class="form-input" type="text" placeholder="2021" autocomplete="off">
+            </div>
+            <div>
+                <label for="comic-format-filter">Comic format:</label>
+                <select id="comic-format-filter" class="form-input">
+                    <option value="all" selected>all</option>
+                    <option value="comic">comic</option>
+                    <option value="magazine">magazine</option>
+                    <option value="trade paperback">trade paperback</option>
+                    <option value="hardcover">hardcover</option>
+                    <option value="digest">digest</option>
+                    <option value="graphic novel">graphic novel</option>
+                    <option value="digital comic">digital comic</option>
+                    <option value="infinite comic">infinite comic</option>
+                </select>
+            </div>
+            <div class="form-checkbox-wrapper">
+                <input id="variant-comics-filter" class="form-checkbox" type="checkbox">
+                <label for="variant-comics-filter">Exclude variant comics from the result set</label>
+            </div>
+            <a href="#" id="clear-filters-btn" class="transparent-btn">Clear filters</a>
+        </form>
         <div class="comics-wrapper"></div>
         <div class="pagination"></div> 
     </section>

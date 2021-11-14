@@ -1,8 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import 'config';
 @import 'buttons';
+@import 'characters';
+@import 'comics';
 @import 'hero';
-@import 'search-area';
+@import 'forms';
+@import 'pagination';
 
 * {
     margin: 0;
@@ -13,13 +16,26 @@
 
 body {
     min-height: 100vh;
-    background: linear-gradient(#3A6073 0%, #16222A 100%);
+    background: linear-gradient($primary-clr 0%, $primary-clr-2 100%);
     color: $white;
     line-height: 1;
 }
 
 a {
     text-decoration: none;
+}
+
+label {
+    display: block;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type='number'] {
+    -moz-appearance: textfield;
 }
 
 .section {
@@ -61,136 +77,4 @@ a {
     height: 40vh;
     @extend %grid-center;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/slide-1.jpg') no-repeat center/cover;
-}
-
-.character {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 2rem;
-    h3 {
-        margin-bottom: 1.5rem;
-        font-size: 1.4rem;
-        text-transform: capitalize;
-        letter-spacing: $space;
-    }
-    h4 {
-        margin-bottom: 1.5rem;
-        font-size: 1.2rem;
-        text-transform: capitalize;
-        letter-spacing: $space;
-        span {
-            color: $yellow;
-        }
-    }
-    p {
-        margin-bottom: 1.5rem;
-        font-size: 1.2rem;
-        font-style: italic;
-        line-height: 1.5;
-    }
-    img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border: 2px solid $red;
-        border-radius: $radius-2;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .character {
-        grid-template-columns: repeat(1, 1fr);
-    }    
-}
-
-.comics-wrapper {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 2rem;
-    article {
-        align-self: flex-start;
-        position: relative;
-        img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border: 2px solid $red-3;
-            border-radius: $radius;
-        }
-        div {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 0;
-            @extend %flex-center;
-            flex-direction: column;
-            padding: 0 0.5rem;
-            border-radius: $radius;
-            overflow: hidden;
-            background-color: #ed1d24bd;
-            text-align: center;
-            transition: $ease-trans;
-            h4 {
-                margin-bottom: 1rem;
-                opacity: 0;
-                line-height: 1.25;
-                text-transform: capitalize;
-                letter-spacing: $space;
-                transition: inherit;
-            }
-            a {
-                display: inline-block;
-                padding: 0.5rem;
-                border: 1px solid $white;
-                border-radius: $radius;
-                color: $white;
-                opacity: 0;
-                letter-spacing: $space;
-                text-transform: uppercase;
-                transition: inherit;
-                &:hover {
-                    background-color: $white;
-                    color: $red-3;
-                }
-            }
-        }
-        &:hover div {
-            height: 100%;
-            h4 {
-                opacity: 1;
-            }
-            a {
-                opacity: 1;
-            }    
-        }
-        &:nth-child(even) {
-            img {
-                border: 2px solid $blue;
-            }
-            div {
-                background-color: rgba(68, 157, 212, 0.76);
-                a:hover {
-                    color: $blue;
-                }
-            }      
-        }
-    }
-}
-
-@media screen and (max-width: 1024px) {
-    .comics-wrapper {
-        grid-template-columns: repeat(3, 1fr);
-    }    
-}
-
-@media screen and (max-width: 768px) {
-    .comics-wrapper {
-        grid-template-columns: repeat(2, 1fr);
-    }    
-}
-
-@media screen and (max-width: 480px) {
-    .comics-wrapper {
-        grid-template-columns: repeat(1, 1fr);
-    }    
 }

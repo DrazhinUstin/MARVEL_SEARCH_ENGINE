@@ -1,3 +1,5 @@
+$primary-clr: #3A6073;
+$primary-clr-2: #16222A;
 $black: rgb(19, 18, 18);
 $white: rgb(255, 255, 255);
 $red: rgb(231, 97, 97);
@@ -6,6 +8,7 @@ $red-3: #ed1d24;
 $blue: rgb(68, 157, 212);
 $blue-2: rgb(21, 116, 175);
 $yellow: #e1c634;
+$yellow-2: #bda416;
 $radius: 0.25rem;
 $radius-2: 0.5rem;
 $space: 0.1rem;
@@ -21,4 +24,11 @@ $linear-trans: all 2s linear;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@mixin set-border-color ($color) {
+    border-color: $color;
+    &:hover {
+        background-color: $color;
+    }
 }

@@ -3,10 +3,17 @@ import {displayCharacter, displayComics, displayPagination, setActivePage} from 
 
 document.addEventListener('DOMContentLoaded', async () => {
     const paginationDOM = document.querySelector('.pagination');
+    const filtersDOM = document.querySelector('.filters-form');
+    const formatFilter = document.getElementById('comic-format-filter');
+    const variantFilter = document.getElementById('variant-comics-filter');
+    const titleFilter = document.getElementById('comic-title-filter');
+    const startYearFilter = document.getElementById('start-year-filter');
     const getComicsBtn = document.getElementById('get-comics-btn');
+    const openFiltersBtn = document.getElementById('open-filters-btn');
+    const clearFiltersBtn = document.getElementById('clear-filters-btn');
     const id = window.location.search.slice(4);
     const characterUrl = `https://gateway.marvel.com:443/v1/public/characters/${id}?`;
-    const comicsUrl = `https://gateway.marvel.com:443/v1/public/characters/${id}/comics?formatType=comic&limit=100&`;
+    const comicsUrl = `https://gateway.marvel.com:443/v1/public/characters/${id}/comics?`;
     let comicsData;
     let characterData = await fetchData(characterUrl);
     if (!characterData) return;
@@ -16,10 +23,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     getComicsBtn.addEventListener('click', async (event) => {
         event.preventDefault();
-        comicsData = await fetchData(comicsUrl);
-        if (!comicsData) return;
-        comicsData = destructureComicsData(comicsData);
-        if (comicsData.length > 10) {
+        const formatValue = formatFilter.value;
+        const variantValue = variantFilter.checked;
+        const titleValue = titleFilter.value.trim();
+        const yearValue = startYearFilter.value.trim();
+        const fullComicsUrl = `${comicsUrl}${formatValue !== 'all' ? 'format=' + formatValue + '&' : ''}formatType=comic${variantValue ? '&noVariants=' + variantValue : ''}${titleValue ? '&titleStartsWith=' + titleValue : ''}${yearValue ? '&startYear=' + yearValue : ''}&limit=100&`;
+        const data = await fetchData(fullComicsUrl);
+        if (!data) return;
+        comicsData = destructureComicsData(data);
+        if (comicsData.length > 12) {
             comicsData = paginateData(comicsData, 12);
             displayComics(comicsData[0]);
             displayPagination(comicsData);
@@ -29,6 +41,21 @@ document.addEventListener('DOMContentLoaded', async () => {
             paginationDOM.classList.remove('active');
             displayComics(comicsData);
         }
+    });
+
+    openFiltersBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        filtersDOM.classList.toggle('active');
+        if (filtersDOM.classList.contains('active')) openFiltersBtn.textContent = 'hide filters';
+        else openFiltersBtn.textContent = 'show filters';
+    });
+
+    clearFiltersBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        formatFilter.value = 'all';
+        variantFilter.checked = false;
+        titleFilter.value = '';
+        startYearFilter.value = '';
     });
 
     paginationDOM.addEventListener('click', event => {
