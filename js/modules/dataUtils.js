@@ -43,11 +43,7 @@ const destructureComicsData = (data) => {
         const {id, format, title, description, characters: {items: characters}, creators: {items: creators}, pageCount, thumbnail: {extension, path}, urls: [{url}]} = item;
         const image = `${path}.${extension}`;
         return {id, format, title, description, characters, creators, pageCount, image, url};
-    });/* .sort((a, b) => {
-        if (a.title > b.title) return 1;
-        else if (a.title < b.title) return -1;
-        else return 0;
-    }); */
+    });
 };
 
 export {fetchData, paginateData, destructureHeroesData, destructureComicsData};

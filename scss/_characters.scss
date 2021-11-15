@@ -14,8 +14,8 @@
                 border-color: $blue;
             }
         }
-        h3 {
-            margin-bottom: 1rem;
+        h4 {
+            margin-bottom: 0.75rem;
             line-height: 1.25;
         }
         p {
@@ -29,12 +29,6 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 2rem;
-    h3 {
-        margin-bottom: 1.5rem;
-        font-size: 1.4rem;
-        text-transform: capitalize;
-        letter-spacing: $space;
-    }
     h4 {
         margin-bottom: 1.5rem;
         font-size: 1.2rem;

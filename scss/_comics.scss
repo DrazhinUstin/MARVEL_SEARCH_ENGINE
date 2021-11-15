@@ -72,6 +72,55 @@
     }
 }
 
+.comic {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: 2px solid $red-3;
+        border-radius: $radius;
+    }
+    h4 {
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+        letter-spacing: $space;
+        text-transform: capitalize;
+        span {
+            color: $yellow;
+        }
+    }
+    p {
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+        font-style: italic;
+        line-height: 1.5;
+    }
+    ul {
+        display: flex;
+        flex-flow: row wrap;
+        column-gap: 0.5rem;
+        row-gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        li {
+            flex-shrink: 0;
+        }
+        a {
+            display: inline-block;
+            padding: 0.5rem;
+            border-radius: $radius;
+            background-color: $blue;
+            color: $white;
+            transition: $ease-trans;
+            &:hover {
+                background-color: $blue-2;
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 1024px) {
     .comics-wrapper {
         grid-template-columns: repeat(3, 1fr);

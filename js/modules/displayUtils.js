@@ -6,7 +6,7 @@ const displayHeroes = (data) => {
                         <img src="${item.image}" alt="${item.name}">
                     </div>
                     <div>
-                        <h3>${item.name}</h3>
+                        <h4>${item.name}</h4>
                         <p>
                             ${item.description.trim() ? item.description : 'No description provided...'}
                         </p>
@@ -23,7 +23,7 @@ const displayComics = (data) => {
                     <img src="${item.image}" alt="comic-image">
                     <div>
                         <h4>${item.title}</h4>
-                        <a href="comic.html?${item.id}">Watch</a>
+                        <a href="comic.html?id=${item.id}" target="_blank">Watch</a>
                     </div>
                 </article>`;
     }).join('');
@@ -48,6 +48,31 @@ const displayCharacter = (data) => {
     titleDOM.textContent = data[0].name;
 };
 
+const displayComic = (data) => {
+    const comicDOM = document.querySelector('.comic');
+    const titleDOM = document.querySelector('.title h3');
+    comicDOM.innerHTML = data.map(item => {
+        return `<div>
+                    <img src="${item.image}" alt="${item.title}">
+                </div>
+                <div>
+                    <p>${item.description ? item.description : 'No description provided...'}</p>
+                    <h4>Format: <span>${item.format}</span></h4>
+                    <h4>Number of pages: <span>${item.pageCount}</span></h4>
+                    <h4>Characters:</h4>
+                    <ul>
+                        ${item.characters.map(character => {
+                            const index = character.resourceURI.lastIndexOf('/')
+                            const id = character.resourceURI.slice(index + 1)
+                            return `<li><a href="character.html?id=${id}" target="_blank">${character.name}</a></li>`
+                        }).join('')}
+                    </ul>
+                    <a href="${item.url}" class="border-btn yellow" target="_blank">Visit marvel profile</a>
+                </div>`;
+    }).join('');
+    titleDOM.textContent = data[0].title;
+};
+
 const displayPagination = (data) => {
     const paginationDOM = document.querySelector('.pagination');
     paginationDOM.innerHTML = `<button class="prev-btn">
@@ -65,4 +90,15 @@ const setActivePage = (step) => {
     pages.forEach((page, index) => index === step ? page.classList.add('active') : page.classList.remove('active')); 
 };
 
-export {displayHeroes, displayComics, displayCharacter, displayPagination, setActivePage};
+const displayItemsCount = (data) => {
+    const itemsCountDOM = document.querySelector('.items-count');
+    itemsCountDOM.innerHTML = `Total items: <span>${data.length}</span>`;
+    itemsCountDOM.classList.add('active');
+};
+
+const toggleLoading = () => {
+    const loading = document.querySelector('.loading');
+    loading.classList.toggle('show');
+};
+
+export {displayHeroes, displayComics, displayCharacter, displayComic, displayPagination, setActivePage, displayItemsCount, toggleLoading};

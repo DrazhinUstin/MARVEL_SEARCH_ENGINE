@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-.hero, .pagination span, .page-header {
+.loading, .loading div, .hero, .pagination span, .page-header {
   display: -ms-grid;
   display: grid;
   place-items: center;
@@ -17,10 +17,73 @@
           align-items: center;
 }
 
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  z-index: 99;
+}
+
+.loading.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.loading div {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 0.25rem;
+  background-color: white;
+  -webkit-box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.loading div span {
+  width: 2rem;
+  height: 2rem;
+  display: block;
+  border: 0.25rem solid #e76161;
+  border-right-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: loading 0.6s linear 0s infinite;
+          animation: loading 0.6s linear 0s infinite;
+}
+
+@-webkit-keyframes loading {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes loading {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
 .btn-container {
   -webkit-column-gap: 2rem;
           column-gap: 2rem;
-  margin: 4rem 0;
+  margin-top: 4rem;
 }
 
 .btn {
@@ -118,8 +181,8 @@
   border-color: #449dd4;
 }
 
-.characters-wrapper article h3 {
-  margin-bottom: 1rem;
+.characters-wrapper article h4 {
+  margin-bottom: 0.75rem;
   line-height: 1.25;
 }
 
@@ -134,13 +197,6 @@
   -ms-grid-columns: (1fr)[2];
       grid-template-columns: repeat(2, 1fr);
   grid-gap: 2rem;
-}
-
-.character h3 {
-  margin-bottom: 1.5rem;
-  font-size: 1.4rem;
-  text-transform: capitalize;
-  letter-spacing: 0.1rem;
 }
 
 .character h4 {
@@ -276,6 +332,73 @@
 
 .comics-wrapper article:nth-child(even) div a:hover {
   color: #449dd4;
+}
+
+.comic {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+}
+
+.comic img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 2px solid #ed1d24;
+  border-radius: 0.25rem;
+}
+
+.comic h4 {
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+  text-transform: capitalize;
+}
+
+.comic h4 span {
+  color: #e1c634;
+}
+
+.comic p {
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.comic ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-column-gap: 0.5rem;
+          column-gap: 0.5rem;
+  row-gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.comic ul li {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.comic ul a {
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: #449dd4;
+  color: white;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.comic ul a:hover {
+  background-color: #1574af;
 }
 
 @media screen and (max-width: 1024px) {
@@ -486,14 +609,9 @@ select.form-input {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 4rem auto;
+  margin: 0 auto;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
-}
-
-.search-form.disabled {
-  opacity: 0.5;
-  pointer-events: none;
 }
 
 .search-form input {
@@ -620,6 +738,10 @@ body {
   line-height: 1;
 }
 
+li {
+  list-style-type: none;
+}
+
 a {
   text-decoration: none;
 }
@@ -679,4 +801,21 @@ input[type='number'] {
   height: 40vh;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url("../images/slide-1.jpg") no-repeat center/cover;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/slide-1.jpg") no-repeat center/cover;
+}
+
+.items-count {
+  display: none;
+  margin: 4rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid white;
+  text-align: right;
+  letter-spacing: 0.1rem;
+}
+
+.items-count.active {
+  display: block;
+}
+
+.items-count span {
+  color: #e1c634;
 }

@@ -1,5 +1,5 @@
 import {fetchData, paginateData, destructureHeroesData, destructureComicsData} from "./modules/dataUtils.js";
-import {displayCharacter, displayComics, displayPagination, setActivePage} from "./modules/displayUtils.js";
+import {displayCharacter, displayComics, displayPagination, setActivePage, displayItemsCount, toggleLoading} from "./modules/displayUtils.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     const paginationDOM = document.querySelector('.pagination');
@@ -23,14 +23,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     getComicsBtn.addEventListener('click', async (event) => {
         event.preventDefault();
+        toggleLoading();
         const formatValue = formatFilter.value;
         const variantValue = variantFilter.checked;
         const titleValue = titleFilter.value.trim();
         const yearValue = startYearFilter.value.trim();
         const fullComicsUrl = `${comicsUrl}${formatValue !== 'all' ? 'format=' + formatValue + '&' : ''}formatType=comic${variantValue ? '&noVariants=' + variantValue : ''}${titleValue ? '&titleStartsWith=' + titleValue : ''}${yearValue ? '&startYear=' + yearValue : ''}&limit=100&`;
         const data = await fetchData(fullComicsUrl);
+        toggleLoading();
         if (!data) return;
         comicsData = destructureComicsData(data);
+        displayItemsCount(data);
         if (comicsData.length > 12) {
             comicsData = paginateData(comicsData, 12);
             displayComics(comicsData[0]);

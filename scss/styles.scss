@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import 'config';
+@import 'preloader';
 @import 'buttons';
 @import 'characters';
 @import 'comics';
@@ -19,6 +20,10 @@ body {
     background: linear-gradient($primary-clr 0%, $primary-clr-2 100%);
     color: $white;
     line-height: 1;
+}
+
+li {
+    list-style-type: none;
 }
 
 a {
@@ -77,4 +82,19 @@ input[type='number'] {
     height: 40vh;
     @extend %grid-center;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/slide-1.jpg') no-repeat center/cover;
+}
+
+.items-count {
+    display: none;
+    margin: 4rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid $white;
+    text-align: right;
+    letter-spacing: $space;
+    &.active {
+        display: block;
+    }
+    span {
+        color: $yellow;
+    }
 }

@@ -56,12 +56,8 @@ select.form-input {
 .search-form {
     width: 80%;
     display: flex;
-    margin: 4rem auto;
+    margin: 0 auto;
     transition: $ease-trans;
-    &.disabled {
-        opacity: 0.5;
-        pointer-events: none;
-    }
     input {
         width: 100%;
         border-radius: $radius-2 0 0 $radius-2;
