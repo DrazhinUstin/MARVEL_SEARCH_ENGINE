@@ -6,6 +6,7 @@
 @import 'comics';
 @import 'hero';
 @import 'forms';
+@import 'carousel';
 @import 'pagination';
 
 * {
@@ -32,6 +33,11 @@ a {
 
 label {
     display: block;
+}
+
+button {
+    line-height: 1;
+    cursor: pointer;
 }
 
 input::-webkit-outer-spin-button,
@@ -75,6 +81,7 @@ input[type='number'] {
 
 .message {
     text-align: center;
+    font-size: 1.2rem;
     font-style: italic;
 }
 

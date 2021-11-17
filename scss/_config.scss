@@ -27,8 +27,14 @@ $linear-trans: all 2s linear;
     align-items: center;
 }
 
+%flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 @mixin set-border-color ($color) {
-    border-color: $color;
+    border: 2px solid $color;
     &:hover {
         background-color: $color;
     }

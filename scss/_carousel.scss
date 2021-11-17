@@ -1,0 +1,95 @@
+.carousel-wrapper {
+    position: relative;
+    touch-action: none;
+    & > div:first-child {
+        overflow: hidden;
+    }
+}
+
+.carousel {
+    display: flex;
+    align-items: center;
+    transition: $ease-trans;
+}
+
+.carousel .slide {
+    flex: 0 0 (100%/3);
+    padding: 0 0.5rem;
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: 2px solid $red-3;
+        border-radius: $radius;
+    }
+    &:nth-child(odd) {
+        img {
+            border: 2px solid $blue;
+        } 
+    }
+}
+
+.carousel-circles {
+    @extend %flex-center;
+    column-gap: 0.5rem;
+    margin-top: 1rem;
+    span {
+        flex: 0 0 0.75rem;
+        height: 0.75rem;
+        background-color: #ed1d2459;
+        cursor: pointer;
+        &.active {
+            background-color: $red-3;
+        }
+    }
+}
+
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    @extend %flex-between;
+    button {
+        width: 2.5rem;
+        height: 2.5rem;
+        @extend %grid-center;
+        margin: 0 -0.5rem;
+        border: none;
+        border-radius: 50%;
+        background-color: $red-2;
+        color: $white;
+        font-size: 2rem;
+        transition: $ease-trans;
+        &:hover {
+            background-color: $red-3;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .carousel .slide {
+        flex: 0 0 50%;
+        padding: 0 0.5rem;
+    }
+    .carousel-controls {
+        button {
+            width: 2rem;
+            height: 2rem;
+            margin: 0 -0.25rem;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .carousel .slide {
+        flex: 0 0 100%;
+        padding: 0 1rem;
+    }
+    .carousel-controls {
+        button {
+            margin: 0;
+        }
+    }
+}

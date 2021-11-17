@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const openFiltersBtn = document.getElementById('open-filters-btn');
     const clearFiltersBtn = document.getElementById('clear-filters-btn');
     const id = window.location.search.slice(4);
-    const characterUrl = `https://gateway.marvel.com:443/v1/public/characters/${id}?`;
-    const comicsUrl = `https://gateway.marvel.com:443/v1/public/characters/${id}/comics?`;
+    const characterUrl = `https://gateway.marvel.com/v1/public/characters/${id}?`;
+    const comicsUrl = `https://gateway.marvel.com/v1/public/characters/${id}/comics?`;
     let comicsData;
     let characterData = await fetchData(characterUrl);
     if (!characterData) return;

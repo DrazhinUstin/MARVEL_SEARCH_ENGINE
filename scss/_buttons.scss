@@ -31,6 +31,12 @@
     &:hover {
         background-color: $red-3;
     }
+    &.blue {
+        background-color: rgba(68, 157, 212, 0.349);
+        &:hover {
+            background-color: $blue;
+        }
+    }
     &.yellow {
         background-color: #bda41679;
         &:hover {
@@ -42,7 +48,7 @@
 .border-btn {
     display: inline-block;
     padding: 0.75rem 1rem;
-    border: 2px solid $blue;
+    @include set-border-color($blue);
     border-radius: $radius;
     background-color: inherit;
     color: $white;
@@ -50,9 +56,6 @@
     text-transform: uppercase;
     letter-spacing: $space;
     transition: $ease-trans;
-    &:hover {
-        background-color: $blue;
-    }
     &.red {
         @include set-border-color($red-3);
     }

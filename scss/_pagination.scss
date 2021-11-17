@@ -1,10 +1,11 @@
 .pagination {
-    @extend %flex-center;
-    flex-flow: row wrap;
-    column-gap: 1rem;
-    row-gap: 1rem;
+    display: none;
+    margin-top: 4rem;
     &.active {
-        margin-top: 4rem;
+        @extend %flex-center;
+        flex-flow: row wrap;
+        column-gap: 1rem;
+        row-gap: 1rem;
     }
     span {
         width: 2rem;

@@ -46,4 +46,12 @@ const destructureComicsData = (data) => {
     });
 };
 
-export {fetchData, paginateData, destructureHeroesData, destructureComicsData};
+const saveDatatoStorage = (key, data) => {
+    localStorage.setItem(key, JSON.stringify(data));
+};
+
+const getDataFromStorage = (key) => {
+    return localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : [];
+};
+
+export {fetchData, paginateData, destructureHeroesData, destructureComicsData, saveDatatoStorage, getDataFromStorage};

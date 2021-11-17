@@ -1,5 +1,5 @@
 const setupSlider = () => {
-    const slides = [...document.querySelectorAll('.slide')];
+    const slides = [...document.querySelectorAll('.hero-slider .slide')];
     let step = 0;
 
     const changeSlide = () => {
