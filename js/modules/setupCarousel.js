@@ -1,8 +1,7 @@
-const setupCarousel = () => {
-    const carouselWrapper = document.querySelector('.carousel-wrapper');
+const setupCarousel = (carouselWrapper) => {
     const carousel = carouselWrapper.querySelector('.carousel');
     const slides = [...carousel.querySelectorAll('.slide')];
-    const squaresDOM = carouselWrapper.querySelector('.carousel-circles');
+    const squaresDOM = carouselWrapper.querySelector('.carousel-squares');
     const leftSwitchBtn = carouselWrapper.querySelector('.left-switch-btn');
     const rightSwitchBtn = carouselWrapper.querySelector('.right-switch-btn');
     let initX = 0;
@@ -73,10 +72,10 @@ const setupCarousel = () => {
         initTranslate = currentTranslate;
     };
 
-    carouselWrapper.addEventListener('pointerdown', startSwipe);
-    carouselWrapper.addEventListener('pointermove', moveSwipe);
-    carouselWrapper.addEventListener('pointerup', endSwipe);
-    carouselWrapper.addEventListener('pointerleave', endSwipe);
+    carousel.addEventListener('pointerdown', startSwipe);
+    carousel.addEventListener('pointermove', moveSwipe);
+    carousel.addEventListener('pointerup', endSwipe);
+    carousel.addEventListener('pointerleave', endSwipe);
 
     rightSwitchBtn.addEventListener('click', () => {
         step++;

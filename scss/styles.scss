@@ -58,6 +58,7 @@ input[type='number'] {
 .title {
     @extend %flex-center;
     margin-bottom: 4rem;
+    text-align: center;
     letter-spacing: $space;
     text-transform: capitalize;
     h2 {

@@ -1,5 +1,6 @@
 .form-input {
     border: none;
+    width: 100%;
     height: 2.5rem;
     padding: 0 1rem;
     border-radius: $radius-2;
@@ -16,6 +17,7 @@
 }
 
 select.form-input {
+    width: 11rem;
     padding: 0 0.5rem;
     text-transform: capitalize;
     cursor: pointer;
@@ -59,7 +61,6 @@ select.form-input {
     margin: 0 auto;
     transition: $ease-trans;
     input {
-        width: 100%;
         border-radius: $radius-2 0 0 $radius-2;
     }
     button {
@@ -80,6 +81,7 @@ select.form-input {
 }
 
 .filters-form {
+    width: 50%;
     display: none;
     margin: 4rem 0;
     &.active {
@@ -87,7 +89,7 @@ select.form-input {
     }
     div {
         margin-bottom: 1rem;
-        &:nth-child(4) {
+        &:last-of-type {
             margin: 1.5rem 0;
             label {
                 margin-bottom: 0;
@@ -98,13 +100,22 @@ select.form-input {
         margin-bottom: 1rem;
         letter-spacing: $space;
     }
-    input {
-        width: 60%;
+    footer {
+        @extend %flex-between;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .filters-form {
+        width: 80%;
     }
 }
 
 @media screen and (max-width: 768px) {
     .search-form {
+        width: 100%;
+    }
+    .filters-form {
         width: 100%;
     }
 }

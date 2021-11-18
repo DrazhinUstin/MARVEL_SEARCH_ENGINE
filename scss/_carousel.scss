@@ -10,6 +10,7 @@
     display: flex;
     align-items: center;
     transition: $ease-trans;
+    user-select: none;
 }
 
 .carousel .slide {
@@ -20,16 +21,35 @@
         height: auto;
         display: block;
         border: 2px solid $red-3;
-        border-radius: $radius;
+        border-bottom: none;
+        border-radius: $radius $radius 0 0;
+    }
+    footer {
+        padding: 0.5rem;
+        border-radius: 0 0 $radius $radius;
+        text-align: center;
+        background-color: $red-3;
+        a {
+            color: $white;
+            text-transform: uppercase;
+            letter-spacing: $space;
+            transition: $ease-trans;
+            &:hover {
+                color: $yellow;
+            }
+        }
     }
     &:nth-child(odd) {
         img {
-            border: 2px solid $blue;
+            border-color: $blue;
+        }
+        footer {
+            background-color: $blue;
         } 
     }
 }
 
-.carousel-circles {
+.carousel-squares {
     @extend %flex-center;
     column-gap: 0.5rem;
     margin-top: 1rem;
@@ -42,6 +62,14 @@
             background-color: $red-3;
         }
     }
+    &.blue {
+        span {
+            background-color: rgba(68, 157, 212, 0.219);
+            &.active {
+                background-color: $blue-2;
+            }
+        }
+    }
 }
 
 .carousel-controls {
@@ -50,6 +78,7 @@
     transform: translateY(-50%);
     width: 100%;
     @extend %flex-between;
+    pointer-events: none;
     button {
         width: 2.5rem;
         height: 2.5rem;
@@ -61,6 +90,7 @@
         color: $white;
         font-size: 2rem;
         transition: $ease-trans;
+        pointer-events: initial;
         &:hover {
             background-color: $red-3;
         }

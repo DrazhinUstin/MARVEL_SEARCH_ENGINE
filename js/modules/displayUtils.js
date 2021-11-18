@@ -61,11 +61,11 @@ const displayComic = (data) => {
                     <h4>Number of pages: <span>${item.pageCount}</span></h4>
                     <h4>Characters:</h4>
                     <ul>
-                        ${item.characters.map(character => {
+                        ${item.characters.length ? item.characters.map(character => {
                             const index = character.resourceURI.lastIndexOf('/')
                             const id = character.resourceURI.slice(index + 1)
                             return `<li><a href="character.html?id=${id}" target="_blank">${character.name}</a></li>`
-                        }).join('')}
+                        }).join('') : '<p>No characters provided...</p>'}
                     </ul>
                     <a href="${item.url}" class="border-btn yellow" target="_blank">Visit marvel profile</a>
                 </div>`;
@@ -101,4 +101,14 @@ const toggleLoading = () => {
     loading.classList.toggle('show');
 };
 
-export {displayHeroes, displayComics, displayCharacter, displayComic, displayPagination, setActivePage, displayItemsCount, toggleLoading};
+const populateCarousel = (carouselDOM, data) => {
+    const carousel = carouselDOM.querySelector('.carousel');
+    carousel.innerHTML = data.map(item => {
+        return ` <div class="slide">
+                    <img src="${item.image}" alt="${item.name}">
+                    <footer><a href="comic.html?id=${item.id}">Watch</a></footer>
+                </div>`;
+    }).join('');
+};
+
+export {displayHeroes, displayComics, displayCharacter, displayComic, displayPagination, setActivePage, displayItemsCount, toggleLoading, populateCarousel};

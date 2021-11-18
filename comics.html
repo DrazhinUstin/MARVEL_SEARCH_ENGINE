@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marvel Heroes ||</title>
+    <title>Marvel Heroes || Comics Area</title>
     <script src="https://kit.fontawesome.com/88b18bb1d4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -12,18 +12,11 @@
     <header class="page-header">
         <div class="logo">
             <img src="images/Marvel_Logo.svg" alt="logo" class="logo">
-            Heroes search
+            Comics Area
         </div>
     </header>
     <section class="section">
-        <div class="title">
-            <h3></h3>
-        </div>
-        <article class="character"></article>
-        <div class="btn-container">
-            <a href="#" id="apply-filters-btn" class="border-btn red">Watch comics</a>
-            <a href="#" id="open-filters-btn" class="border-btn">Show filters</a>
-        </div>
+        <a href="#" id="open-filters-btn" class="border-btn">Show filters</a>
         <form class="filters-form">
             <div>
                 <label for="comic-title-filter">Enter the first letters of the comic title or full name:</label>
@@ -69,7 +62,10 @@
                 <input id="variant-comics-filter" class="form-checkbox" type="checkbox">
                 <label for="variant-comics-filter">Exclude variant comics from the result set</label>
             </div>
-            <a href="#" id="clear-filters-btn" class="transparent-btn">Clear filters</a>
+            <footer>
+                <a href="#" id="apply-filters-btn" class="transparent-btn blue">Apply filters</a>
+                <a href="#" id="clear-filters-btn" class="transparent-btn">Clear filters</a>
+            </footer>
         </form>
         <div>
             <div class="items-count"></div>
@@ -83,6 +79,6 @@
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script type="module" src="js/character.js"></script>
+    <script type="module" src="js/comics.js"></script>
 </body>
 </html>

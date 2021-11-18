@@ -5,7 +5,7 @@
   place-items: center;
 }
 
-.btn-container, .comics-wrapper article div, .hero-section, .logo, .carousel-circles, .pagination.active, .title {
+.btn-container, .comics-wrapper article div, .hero-section, .logo, .carousel-squares, .pagination.active, .title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -17,7 +17,7 @@
           align-items: center;
 }
 
-.carousel-controls {
+.filters-form footer, .carousel-controls {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -421,6 +421,10 @@
   background-color: #1574af;
 }
 
+.comic ul p {
+  margin-bottom: 0;
+}
+
 @media screen and (max-width: 1024px) {
   .comics-wrapper {
     -ms-grid-columns: (1fr)[3];
@@ -546,6 +550,7 @@
 
 .form-input {
   border: none;
+  width: 100%;
   height: 2.5rem;
   padding: 0 1rem;
   border-radius: 0.5rem;
@@ -577,6 +582,7 @@
 }
 
 select.form-input {
+  width: 11rem;
   padding: 0 0.5rem;
   text-transform: capitalize;
   cursor: pointer;
@@ -635,7 +641,6 @@ select.form-input {
 }
 
 .search-form input {
-  width: 100%;
   border-radius: 0.5rem 0 0 0.5rem;
 }
 
@@ -659,6 +664,7 @@ select.form-input {
 }
 
 .filters-form {
+  width: 50%;
   display: none;
   margin: 4rem 0;
 }
@@ -671,11 +677,11 @@ select.form-input {
   margin-bottom: 1rem;
 }
 
-.filters-form div:nth-child(4) {
+.filters-form div:last-of-type {
   margin: 1.5rem 0;
 }
 
-.filters-form div:nth-child(4) label {
+.filters-form div:last-of-type label {
   margin-bottom: 0;
 }
 
@@ -684,12 +690,17 @@ select.form-input {
   letter-spacing: 0.1rem;
 }
 
-.filters-form input {
-  width: 60%;
+@media screen and (max-width: 1024px) {
+  .filters-form {
+    width: 80%;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .search-form {
+    width: 100%;
+  }
+  .filters-form {
     width: 100%;
   }
 }
@@ -713,6 +724,10 @@ select.form-input {
           align-items: center;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .carousel .slide {
@@ -727,20 +742,44 @@ select.form-input {
   height: auto;
   display: block;
   border: 2px solid #ed1d24;
-  border-radius: 0.25rem;
+  border-bottom: none;
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.carousel .slide footer {
+  padding: 0.5rem;
+  border-radius: 0 0 0.25rem 0.25rem;
+  text-align: center;
+  background-color: #ed1d24;
+}
+
+.carousel .slide footer a {
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.carousel .slide footer a:hover {
+  color: #e1c634;
 }
 
 .carousel .slide:nth-child(odd) img {
-  border: 2px solid #449dd4;
+  border-color: #449dd4;
 }
 
-.carousel-circles {
+.carousel .slide:nth-child(odd) footer {
+  background-color: #449dd4;
+}
+
+.carousel-squares {
   -webkit-column-gap: 0.5rem;
           column-gap: 0.5rem;
   margin-top: 1rem;
 }
 
-.carousel-circles span {
+.carousel-squares span {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 0.75rem;
           flex: 0 0 0.75rem;
@@ -749,8 +788,16 @@ select.form-input {
   cursor: pointer;
 }
 
-.carousel-circles span.active {
+.carousel-squares span.active {
   background-color: #ed1d24;
+}
+
+.carousel-squares.blue span {
+  background-color: rgba(68, 157, 212, 0.219);
+}
+
+.carousel-squares.blue span.active {
+  background-color: #1574af;
 }
 
 .carousel-controls {
@@ -759,6 +806,7 @@ select.form-input {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   width: 100%;
+  pointer-events: none;
 }
 
 .carousel-controls button {
@@ -772,6 +820,7 @@ select.form-input {
   font-size: 2rem;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
+  pointer-events: initial;
 }
 
 .carousel-controls button:hover {
@@ -904,6 +953,7 @@ input[type='number'] {
 
 .title {
   margin-bottom: 4rem;
+  text-align: center;
   letter-spacing: 0.1rem;
   text-transform: capitalize;
 }

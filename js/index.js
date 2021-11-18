@@ -1,5 +1,5 @@
-import {fetchData, paginateData, destructureHeroesData, getDataFromStorage} from "./modules/dataUtils.js";
-import {displayHeroes, displayPagination, setActivePage, displayItemsCount, toggleLoading} from "./modules/displayUtils.js";
+import {fetchData, paginateData, destructureHeroesData, getDataFromStorage, destructureComicsData} from "./modules/dataUtils.js";
+import {displayHeroes, displayPagination, setActivePage, displayItemsCount, toggleLoading, populateCarousel} from "./modules/displayUtils.js";
 import setupSlider from "./modules/setupSlider.js";
 import setupCarousel from "./modules/setupCarousel.js";
 
@@ -7,7 +7,8 @@ const form = document.querySelector('.search-form');
 const input = form.querySelector('input');
 const paginationDOM = document.querySelector('.pagination');
 const favoritesCountDOM = document.querySelector('.favorites-count');
-const favoritesDOM = document.querySelector('.carousel-wrapper');
+const favoritesDOM = document.querySelector('.favorites .carousel-wrapper');
+const comicsDOM = document.querySelector('.comics .carousel-wrapper');
 const watchFavoritesBtn = document.getElementById('watch-favorites-btn');
 
 form.addEventListener('submit', async (event) => {
@@ -64,29 +65,28 @@ paginationDOM.addEventListener('click', event => {
     }
 });
 
-const populateCarousel = () => {
-    const carousel = favoritesDOM.querySelector('.carousel');
-    carousel.innerHTML = favorites.map(item => {
-        return ` <div class="slide">
-                    <img src="${item.image}" alt="${item.name}">
-                </div>`;
-    }).join('');
-};
-
 let heroesData;
 setupSlider();
 
-const favorites = getDataFromStorage('favorites');
-favoritesCountDOM.textContent = favorites.length;
-if (!favorites.length) {
-    favoritesDOM.innerHTML = ` <div class="message">You don't have favorite comics yet...</div>`
-    watchFavoritesBtn.textContent = 'Find favorites';
-    watchFavoritesBtn.href = '###';
-} else if (favorites.length < 4) {
-    populateCarousel();
-    favoritesDOM.lastElementChild.remove();
-    favoritesDOM.lastElementChild.remove();
-} else {
-    populateCarousel();
-    setupCarousel();
-}
+document.addEventListener('DOMContentLoaded', async () => {
+    const favorites = getDataFromStorage('favorites');
+    favoritesCountDOM.textContent = favorites.length;
+    if (!favorites.length) {
+        favoritesDOM.innerHTML = ` <div class="message">You don't have favorite comics yet...</div>`
+        watchFavoritesBtn.textContent = 'Find favorites';
+        watchFavoritesBtn.href = '###';
+    } else if (favorites.length < 4) {
+        populateCarousel(favoritesDOM, favorites);
+        favoritesDOM.lastElementChild.remove();
+        favoritesDOM.lastElementChild.remove();
+    } else {
+        populateCarousel(favoritesDOM, favorites);
+        setupCarousel(favoritesDOM);
+    }
+
+    let comicsUrl = 'https://gateway.marvel.com/v1/public/comics?dateDescriptor=lastWeek&limit=10&';
+    let comicsData = await fetchData(comicsUrl);
+    comicsData = destructureComicsData(comicsData);
+    populateCarousel(comicsDOM, comicsData);
+    setupCarousel(comicsDOM);
+});
