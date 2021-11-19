@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marvel Heroes ||</title>
+    <title>Marvel Heroes || Favorites</title>
     <script src="https://kit.fontawesome.com/88b18bb1d4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -12,19 +12,20 @@
     <header class="page-header">
         <div class="logo">
             <img src="images/Marvel_Logo.svg" alt="logo" class="logo">
-            Comics Area
+            Favorites
         </div>
     </header>
     <section class="section">
-        <div class="title">
-            <h3></h3>
+        <div>
+            <div class="items-count"></div>
+            <div class="comics-wrapper"></div>
+            <div class="pagination"></div> 
         </div>
-        <article class="comic"></article>
         <div class="btn-container">
-            <a href="#" id="add-to-favorites-btn" class="transparent-btn blue">Add to favorites</a>
+            <a href="comics.html" class="border-btn">Add favorites</a>
+            <a href="#" id="clear-favorites-btn" class="border-btn red">Clear favorites</a>
         </div>
     </section>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script type="module" src="js/comic.js"></script>
+    <script type="module" src="js/favorites.js"></script>
 </body>
 </html>

@@ -753,7 +753,21 @@ select.form-input {
   background-color: #ed1d24;
 }
 
+.carousel .slide footer h4 {
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+  text-transform: capitalize;
+  letter-spacing: 0.1rem;
+}
+
+.carousel .slide footer h4 ~ a {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: #b1181d;
+}
+
 .carousel .slide footer a {
+  display: inline-block;
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
@@ -771,6 +785,10 @@ select.form-input {
 
 .carousel .slide:nth-child(odd) footer {
   background-color: #449dd4;
+}
+
+.carousel .slide:nth-child(odd) footer h4 ~ a {
+  background-color: #1574af;
 }
 
 .carousel-squares {
@@ -798,6 +816,14 @@ select.form-input {
 
 .carousel-squares.blue span.active {
   background-color: #1574af;
+}
+
+.carousel-squares.yellow span {
+  background-color: #bda4164d;
+}
+
+.carousel-squares.yellow span.active {
+  background-color: #e1c634;
 }
 
 .carousel-controls {

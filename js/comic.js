@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const id = +window.location.search.slice(4);
     const comicUrl = `https://gateway.marvel.com/v1/public/comics/${id}?`;
     let comicData =  await fetchData(comicUrl);
+    if (!comicData) return;
     comicData = destructureComicsData(comicData);
     document.title = `Marvel Heroes || ${comicData[0].title}`;
     displayComic(comicData);
@@ -17,10 +18,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         switch (addToFavoritesBtn.textContent) {
             case 'Add to favorites':
                 addToFavoritesBtn.textContent = 'Remove from favorites';
+                addToFavoritesBtn.classList.remove('blue');
                 favorites.push(comicData[0]);
                 break;
             case 'Remove from favorites':
                 addToFavoritesBtn.textContent = 'Add to favorites';
+                addToFavoritesBtn.classList.add('blue');
                 favorites = favorites.filter(item => item.id !== id);
                 break;
         }
@@ -29,6 +32,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function checkIfInFavorites () {
         const result = favorites.find(item => item.id === id);
-        if (result) addToFavoritesBtn.textContent = 'Remove from favorites';
+        if (result) {
+            addToFavoritesBtn.textContent = 'Remove from favorites';
+            addToFavoritesBtn.classList.remove('blue');
+        }
     }
 });

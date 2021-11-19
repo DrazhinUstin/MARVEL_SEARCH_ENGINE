@@ -30,7 +30,7 @@ const paginateData = (data, amountPerPage) => {
     return newArray;
 };
 
-const destructureHeroesData = (data) => {
+const destructureCharactersData = (data) => {
     return data.map(item => {
         const {id, name, description, comics: {available: comics}, events: {available: events}, series: {available: series}, stories: {available: stories},  thumbnail: {extension, path}, urls: [{url}]} = item;
         const image = `${path}.${extension}`;
@@ -54,4 +54,4 @@ const getDataFromStorage = (key) => {
     return localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : [];
 };
 
-export {fetchData, paginateData, destructureHeroesData, destructureComicsData, saveDatatoStorage, getDataFromStorage};
+export {fetchData, paginateData, destructureCharactersData, destructureComicsData, saveDatatoStorage, getDataFromStorage};

@@ -1,4 +1,4 @@
-const displayHeroes = (data) => {
+const displayCharacters = (data) => {
     const charactersDOM = document.querySelector('.characters-wrapper');
     charactersDOM.innerHTML = data.map(item => {
         return `<article class="character">
@@ -101,14 +101,4 @@ const toggleLoading = () => {
     loading.classList.toggle('show');
 };
 
-const populateCarousel = (carouselDOM, data) => {
-    const carousel = carouselDOM.querySelector('.carousel');
-    carousel.innerHTML = data.map(item => {
-        return ` <div class="slide">
-                    <img src="${item.image}" alt="${item.name}">
-                    <footer><a href="comic.html?id=${item.id}">Watch</a></footer>
-                </div>`;
-    }).join('');
-};
-
-export {displayHeroes, displayComics, displayCharacter, displayComic, displayPagination, setActivePage, displayItemsCount, toggleLoading, populateCarousel};
+export {displayCharacters, displayComics, displayCharacter, displayComic, displayPagination, setActivePage, displayItemsCount, toggleLoading};

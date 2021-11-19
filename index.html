@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="btn-container">
-            <a href="#" id="watch-favorites-btn" class="border-btn red">Watch favorites</a>
+            <a href="favorites.html" id="watch-favorites-btn" class="border-btn red">Watch favorites</a>
         </div>
     </section>
     <section class="section comics">
@@ -75,27 +75,28 @@
             <a href="comics.html" class="border-btn">Watch comics</a>
         </div>
     </section>
-    <section class="section">
+    <section class="section characters">
         <div class="title">
-            <h2>Search area</h2>
+            <h2>Heroes area</h2>
         </div>
-        <form class="search-form">
-            <input type="text" class="form-input" placeholder="Enter a hero name..." required>
-            <button type="submit">
-                <i class="fas fa-search"></i>
-            </button>
-        </form>
-        <div>
-            <div class="items-count"></div>
-            <div class="characters-wrapper"></div>
-            <div class="pagination"></div> 
+        <div class="carousel-wrapper">
+            <div>
+                <div class="carousel"></div>    
+            </div>
+            <div class="carousel-squares yellow"></div>
+            <div class="carousel-controls">
+                <button class="left-switch-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="right-switch-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+        <div class="btn-container">
+            <a href="characters.html" class="border-btn yellow">Watch heroes</a>
         </div>
     </section>
-    <div class="loading">
-        <div>
-            <span></span>
-        </div>
-    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script type="module" src="js/index.js"></script>
 </body>

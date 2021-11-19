@@ -29,7 +29,19 @@
         border-radius: 0 0 $radius $radius;
         text-align: center;
         background-color: $red-3;
+        h4 {
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            text-transform: capitalize;
+            letter-spacing: $space;
+            & ~ a {
+                padding: 0.5rem;
+                border-radius: $radius; 
+                background-color: #b1181d;
+            }
+        }
         a {
+            display: inline-block;
             color: $white;
             text-transform: uppercase;
             letter-spacing: $space;
@@ -45,6 +57,9 @@
         }
         footer {
             background-color: $blue;
+            h4 ~ a{
+                background-color: $blue-2;
+            }
         } 
     }
 }
@@ -67,6 +82,14 @@
             background-color: rgba(68, 157, 212, 0.219);
             &.active {
                 background-color: $blue-2;
+            }
+        }
+    }
+    &.yellow {
+        span {
+            background-color: #bda4164d;
+            &.active {
+                background-color: $yellow;
             }
         }
     }

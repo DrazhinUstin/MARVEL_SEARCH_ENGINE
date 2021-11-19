@@ -1,7 +1,7 @@
 import {fetchData, paginateData, destructureComicsData} from "./dataUtils.js";
 import {displayComics, displayPagination, setActivePage, displayItemsCount, toggleLoading} from "./displayUtils.js";
 
-const setupComicsSearch = (comicsUrl) => {
+const setupComicsSearch = (comicsUrl, immediateLaunch) => {
     const paginationDOM = document.querySelector('.pagination');
     const filtersDOM = document.querySelector('.filters-form');
     const titleFilter = document.getElementById('comic-title-filter');
@@ -88,6 +88,8 @@ const setupComicsSearch = (comicsUrl) => {
             return;
         }
     });
+
+    if (immediateLaunch) applyFiltersBtn.click();
 };
 
 export default setupComicsSearch;

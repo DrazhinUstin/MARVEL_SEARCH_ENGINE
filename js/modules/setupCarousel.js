@@ -102,4 +102,29 @@ const setupCarousel = (carouselWrapper) => {
     displaySquares();
 };
 
-export default setupCarousel;
+const populateCarousel = (carouselWrapper, comicsData, charactersData) => {
+    const carousel = carouselWrapper.querySelector('.carousel');
+    if (comicsData) {
+        carousel.innerHTML = comicsData.map(item => {
+            return ` <div class="slide">
+                        <img src="${item.image}" alt="${item.title}">
+                        <footer>
+                            <a href="comic.html?id=${item.id}">Watch</a>
+                        </footer>
+                    </div>`;
+        }).join('');
+    } 
+    if (charactersData) {
+        carousel.innerHTML = charactersData.map(item => {
+            return ` <div class="slide">
+                        <img src="${item.image}" alt="${item.name}">
+                        <footer>
+                            <h4>${item.name}</h4>
+                            <a href="character.html?id=${item.id}">Watch</a>
+                        </footer>
+                    </div>`;
+        }).join('');
+    }
+};
+
+export {setupCarousel, populateCarousel};

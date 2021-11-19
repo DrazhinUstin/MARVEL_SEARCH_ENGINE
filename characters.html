@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marvel Heroes ||</title>
+    <title>Marvel Heroes || Heroes Area</title>
     <script src="https://kit.fontawesome.com/88b18bb1d4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -12,19 +12,28 @@
     <header class="page-header">
         <div class="logo">
             <img src="images/Marvel_Logo.svg" alt="logo" class="logo">
-            Comics Area
+            Heroes Area
         </div>
     </header>
     <section class="section">
-        <div class="title">
-            <h3></h3>
-        </div>
-        <article class="comic"></article>
-        <div class="btn-container">
-            <a href="#" id="add-to-favorites-btn" class="transparent-btn blue">Add to favorites</a>
+        <form class="search-form">
+            <input type="text" class="form-input" placeholder="Enter a hero name..." required>
+            <button type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+        <div>
+            <div class="items-count"></div>
+            <div class="characters-wrapper"></div>
+            <div class="pagination"></div> 
         </div>
     </section>
+    <div class="loading">
+        <div>
+            <span></span>
+        </div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script type="module" src="js/comic.js"></script>
+    <script type="module" src="js/characters.js"></script>
 </body>
 </html>
