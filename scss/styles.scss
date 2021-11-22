@@ -4,16 +4,23 @@
 @import 'buttons';
 @import 'characters';
 @import 'comics';
+@import 'navbar';
 @import 'hero';
 @import 'forms';
 @import 'carousel';
 @import 'pagination';
+@import 'page-header';
+@import 'page-footer';
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -86,12 +93,6 @@ input[type='number'] {
     font-style: italic;
 }
 
-.page-header {
-    height: 40vh;
-    @extend %grid-center;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/slide-1.jpg') no-repeat center/cover;
-}
-
 .items-count {
     display: none;
     margin: 4rem 0;
@@ -104,5 +105,37 @@ input[type='number'] {
     }
     span {
         color: $yellow;
+    }
+}
+
+#scroll-top-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    transform: translateX(5rem);
+    width: 2.5rem;
+    height: 2.5rem;
+    @extend %grid-center;
+    border: none;
+    border-radius: $radius;
+    background-color: #ed1d2462;
+    color: $white;
+    font-size: 1.5rem;
+    transition: $ease-trans;
+    &.show {
+        transform: translateX(0);
+    }
+    &:hover {
+        background-color: $red-3;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #scroll-top-btn {
+        bottom: 1rem;
+        right: 1rem;
+        width: 2.2rem;
+        height: 2.2rem;
+        font-size: 1.2rem;
     }
 }

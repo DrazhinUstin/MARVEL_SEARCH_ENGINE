@@ -10,7 +10,7 @@ const displayCharacters = (data) => {
                         <p>
                             ${item.description.trim() ? item.description : 'No description provided...'}
                         </p>
-                        <a href="character.html?id=${item.id}" class="btn" target="_blank">View profile</a>
+                        <a href="character.html?id=${item.id}" class="btn">View profile</a>
                     </div>
                 </article>`;
     }).join('');
@@ -23,7 +23,7 @@ const displayComics = (data) => {
                     <img src="${item.image}" alt="comic-image">
                     <div>
                         <h4>${item.title}</h4>
-                        <a href="comic.html?id=${item.id}" target="_blank">Watch</a>
+                        <a href="comic.html?id=${item.id}">Watch</a>
                     </div>
                 </article>`;
     }).join('');
@@ -45,6 +45,7 @@ const displayCharacter = (data) => {
                     <a href="${item.url}" class="border-btn yellow" target="_blank">Visit Marvel profile</a>
                 </div>`;
     }).join('');
+    displayNewStage(data[0]);
     titleDOM.textContent = data[0].name;
 };
 
@@ -64,13 +65,28 @@ const displayComic = (data) => {
                         ${item.characters.length ? item.characters.map(character => {
                             const index = character.resourceURI.lastIndexOf('/')
                             const id = character.resourceURI.slice(index + 1)
-                            return `<li><a href="character.html?id=${id}" target="_blank">${character.name}</a></li>`
+                            return `<li><a href="character.html?id=${id}">${character.name}</a></li>`
                         }).join('') : '<p>No characters provided...</p>'}
                     </ul>
                     <a href="${item.url}" class="border-btn yellow" target="_blank">Visit marvel profile</a>
                 </div>`;
     }).join('');
+    displayNewStage(data[0]);
     titleDOM.textContent = data[0].title;
+};
+
+const displayNewStage = (data) => {
+    const stagesDOM = document.querySelector('.stages .section');
+    const newStage = document.createElement('a');
+    const cutString = makeStringShorter(data.title || data.name);
+    newStage.href = data.url;
+    newStage.textContent = cutString;
+    stagesDOM.append(newStage);
+
+    function makeStringShorter (string) {
+        if (string.length <= 20) return string;
+        return `${string.substring(0, 17).trim()}...`;
+    }
 };
 
 const displayPagination = (data) => {

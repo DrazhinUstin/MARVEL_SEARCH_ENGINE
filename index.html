@@ -10,6 +10,30 @@
 </head>
 <body>
     <header class="hero">
+        <nav class="navbar">
+            <div class="section">
+                <button class="nav-menu-toggle-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="comics.html">Comics</a>
+                    </li>
+                    <li>
+                        <a href="characters.html">Heroes</a>
+                    </li>
+                    <li>
+                        <a href="favorites.html">Favorites</a>
+                        <span class="menu-favorites-count">0</span>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         <div class="hero-slider">
             <div class="slide">
                 <img src="images/slide-1.jpg" alt="slide">
@@ -27,7 +51,7 @@
                 <img src="images/Marvel_Logo.svg" alt="logo" class="logo">
                 Heroes search
             </div>
-            <a href="#" class="transparent-btn">Start search</a>
+            <a href="comics.html" class="transparent-btn">Start search</a>
         </div>
     </header>
     <section class="section favorites">
@@ -97,6 +121,38 @@
             <a href="characters.html" class="border-btn yellow">Watch heroes</a>
         </div>
     </section>
+    <footer class="page-footer">
+        <section class="section">
+            <div>
+                <div class="logo">
+                    <img src="images/Marvel_Logo.svg" alt="logo" class="logo">
+                    Heroes search
+                </div>
+                <ul class="footer-menu">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="comics.html">Comics</a>
+                    </li>
+                    <li>
+                        <a href="characters.html">Heroes</a>
+                    </li>
+                    <li>
+                        <a href="favorites.html">Favorites</a>
+                        <span class="menu-favorites-count">15</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="underline"></div>
+            <p>
+                © <span class="current-year">2021</span> Drazhin Ustin Project<br>
+                Email: zmagar91@qmail.com<br>
+                All rights are reserved<br>
+                Data provided by <a href="https://developer.marvel.com/" target="_blank">Marvel</a>. © <span class="current-year">2021</span> MARVEL
+            </p>
+        </section>
+    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script type="module" src="js/index.js"></script>
 </body>

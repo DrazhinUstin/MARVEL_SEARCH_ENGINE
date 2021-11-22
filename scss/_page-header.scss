@@ -1,0 +1,80 @@
+.page-header {
+    position: relative;
+    height: 40vh;
+    @extend %grid-center;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/slide-1.jpg') no-repeat center/cover;
+}
+
+.stages {
+    position: absolute;
+    top: 0;
+    .section {
+        display: flex;
+        column-gap: 1rem;
+        margin: 0 auto;
+        overflow-x: scroll;
+        @extend %hide-scrollbar;
+    }
+    a {
+        position: relative;
+        height: 2rem;
+        flex-shrink: 0;
+        display: inline-block;
+        padding: 0 0.5rem;
+        background-color: #ed1d249d;
+        color: $white;
+        line-height: 2rem;
+        letter-spacing: $space;
+        transition: $ease-trans;
+        &:first-child {
+            border-radius: $radius 0 0 $radius;
+        }
+        &:last-child {
+            pointer-events: none;
+        }
+        &:hover, &:last-child {
+            background-color: $red-3;
+            &::after {
+                border-left-color: $red-3;
+            }
+            &:not(:first-child)::before {
+                border-top-color: $red-3;
+                border-bottom-color: $red-3;
+            }
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -0.75rem;
+            border-top: 1rem solid transparent;
+            border-bottom: 1rem solid transparent;
+            border-left: 0.75rem solid #ed1d249d;
+            transition: inherit;
+        }
+        &:not(:first-child)::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -0.75rem;
+            border-top: 1rem solid #ed1d249d;
+            border-bottom: 1rem solid #ed1d249d;
+            border-left: 0.75rem solid transparent;
+            transition: inherit;
+        }
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .page-header {
+        height: 50vh;
+    }
+    .stages {
+        .section {
+            width: 100vw;
+        }
+        a {
+            letter-spacing: unset;
+        }
+    }
+}

@@ -10,7 +10,7 @@
     background-color: rgba(0, 0, 0, 0.2);
     opacity: 0;
     transition: $ease-trans;
-    z-index: 99;
+    z-index: 999;
     &.show {
         visibility: visible;
         opacity: 1;

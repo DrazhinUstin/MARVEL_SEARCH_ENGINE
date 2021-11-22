@@ -1,5 +1,6 @@
 import {paginateData, getDataFromStorage, saveDatatoStorage} from "./modules/dataUtils.js";
 import {displayComics, displayPagination, setActivePage, displayItemsCount} from "./modules/displayUtils.js";
+import setupNavigation from './modules/setupNavigation.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const favoritesDOM = document.querySelector('.section > div:first-child');
@@ -61,4 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
         favoritesData = [];
         saveDatatoStorage('favorites', favoritesData);
     };
+
+    setupNavigation();
 });

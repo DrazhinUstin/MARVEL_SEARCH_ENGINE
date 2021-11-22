@@ -1,6 +1,7 @@
 import {fetchData, destructureCharactersData} from "./modules/dataUtils.js";
 import {displayCharacter} from "./modules/displayUtils.js";
 import setupComicsSearch from "./modules/setupComicsSearch.js";
+import setupNavigation from './modules/setupNavigation.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const id = window.location.search.slice(4);
@@ -12,4 +13,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.title = `Marvel Heroes || ${characterData[0].name}`;
     displayCharacter(characterData);
     setupComicsSearch(comicsUrl);
+    setupNavigation();
 });

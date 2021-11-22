@@ -1,10 +1,11 @@
 $primary-clr: #3A6073;
 $primary-clr-2: #16222A;
-$black: rgb(19, 18, 18);
+$black: rgb(28, 28, 28);
 $white: rgb(255, 255, 255);
 $red: rgb(231, 97, 97);
 $red-2: rgb(202, 66, 66);
 $red-3: #ed1d24;
+$red-4: #b1181d;
 $blue: rgb(68, 157, 212);
 $blue-2: rgb(21, 116, 175);
 $yellow: #e1c634;
@@ -14,6 +15,7 @@ $radius-2: 0.5rem;
 $space: 0.1rem;
 $shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 $ease-trans: all 0.4s ease;
+$ease-in-out-trans: all 0.3s ease-in-out;
 $linear-trans: all 2s linear;
 
 %grid-center {
@@ -31,6 +33,14 @@ $linear-trans: all 2s linear;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+%hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 @mixin set-border-color ($color) {

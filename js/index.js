@@ -1,9 +1,11 @@
 import {fetchData, destructureCharactersData, destructureComicsData, getDataFromStorage} from "./modules/dataUtils.js";
 import {setupCarousel, populateCarousel} from "./modules/setupCarousel.js";
 import setupSlider from "./modules/setupSlider.js";
+import setupNavigation from './modules/setupNavigation.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     setupSlider();
+    setupNavigation();
 
     const favoritesDOM = document.querySelector('.favorites .carousel-wrapper');
     const favoritesCountDOM = document.querySelector('.favorites-count');

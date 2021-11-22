@@ -2,6 +2,13 @@
     position: relative;
     height: 100vh;
     @extend %grid-center;
+    .navbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: inherit;
+    }
 }
 
 .hero-slider {
@@ -71,4 +78,14 @@
     img {
         width: 10rem;
     }
+}
+
+@media screen and (max-width: 768px) {
+    .hero {
+        .navbar {
+            ul {
+                top: 0;
+            }
+        }
+    }  
 }
