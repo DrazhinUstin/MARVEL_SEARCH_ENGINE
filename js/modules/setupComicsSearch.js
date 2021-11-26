@@ -1,8 +1,8 @@
-import {fetchData, paginateData, destructureComicsData} from "./dataUtils.js";
-import {displayComics, displayPagination, setActivePage, displayItemsCount, toggleLoading} from "./displayUtils.js";
+import {fetchData, destructureComicsData} from "./dataUtils.js";
+import {displayComics, toggleLoading} from "./displayUtils.js";
+import Controller from "./Controller.js";
 
 const setupComicsSearch = (comicsUrl, immediateLaunch) => {
-    const paginationDOM = document.querySelector('.pagination');
     const filtersDOM = document.querySelector('.filters-form');
     const titleFilter = document.getElementById('comic-title-filter');
     const startYearFilter = document.getElementById('start-year-filter');
@@ -14,6 +14,9 @@ const setupComicsSearch = (comicsUrl, immediateLaunch) => {
     const applyFiltersBtn = document.getElementById('apply-filters-btn');
     const clearFiltersBtn = document.getElementById('clear-filters-btn');
     let comicsData;
+
+    const controller = new Controller(displayComics, 12);
+    controller.setupPagination();
 
     applyFiltersBtn.addEventListener('click', async (event) => {
         event.preventDefault();
@@ -27,18 +30,15 @@ const setupComicsSearch = (comicsUrl, immediateLaunch) => {
         const fullComicsUrl = `${comicsUrl}${format !== 'all' ? 'format=' + format + '&' : ''}${formatType !== 'all' ? 'formatType=' + formatType + '&' : ''}${variant ? 'noVariants=' + variant + '&' : ''}${date !== 'all' ? 'dateDescriptor=' + date + '&' : ''}${title ? 'titleStartsWith=' + title + '&' : ''}${year ? 'startYear=' + year + '&' : ''}limit=100&`;
         const data = await fetchData(fullComicsUrl);
         toggleLoading();
-        if (!data) return;
-        comicsData = destructureComicsData(data);
-        displayItemsCount(comicsData);
-        if (comicsData.length > 12) {
-            comicsData = paginateData(comicsData, 12);
-            displayComics(comicsData[0]);
-            displayPagination(comicsData);
-            paginationDOM.classList.add('active');
+        if (data.code === 200 && data.data.results.length) {
+            comicsData = destructureComicsData(data.data.results);
+            controller.displayData(comicsData);
+        } else if (data.code === 200 && !data.data.results.length) {
+            alert('Sorry, nothing was found for your search...');
+        } else if (data.code === 409) {
+            alert('You must pass a four-digit number if you set the series year filter.');
         } else {
-            paginationDOM.innerHTML = '';
-            paginationDOM.classList.remove('active');
-            displayComics(comicsData);
+            alert('Sorry, something went wrong...');
         }
     });
 
@@ -57,36 +57,6 @@ const setupComicsSearch = (comicsUrl, immediateLaunch) => {
         dateDescriptorFilter.value = 'all';
         titleFilter.value = '';
         startYearFilter.value = '';
-    });
-
-    paginationDOM.addEventListener('click', event => {
-        if (event.target.tagName === 'SPAN') {
-            let step = event.target.textContent - 1;
-            displayComics(comicsData[step]);
-            setActivePage(step);
-            return;
-        }
-        if (event.target.closest('.next-btn')) {
-            const pages = [...paginationDOM.querySelectorAll('span')];
-            const activePage = pages.find(page => page.classList.contains('active'));
-            let step = pages.indexOf(activePage);
-            step++;
-            if (step > pages.length - 1) step = 0;
-            displayComics(comicsData[step]);
-            setActivePage(step);
-            return;
-    
-        }
-        if (event.target.closest('.prev-btn')) {
-            const pages = [...paginationDOM.querySelectorAll('span')];
-            const activePage = pages.find(page => page.classList.contains('active'));
-            let step = pages.indexOf(activePage);
-            step--;
-            if (step < 0) step = pages.length - 1;
-            displayComics(comicsData[step]);
-            setActivePage(step);
-            return;
-        }
     });
 
     if (immediateLaunch) applyFiltersBtn.click();

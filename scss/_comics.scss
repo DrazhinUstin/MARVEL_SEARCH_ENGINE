@@ -2,13 +2,21 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 2rem;
+    @include for-size(large) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @include for-size(medium) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include for-size(small) {
+        grid-template-columns: repeat(1, 1fr);
+    }
     article {
         align-self: flex-start;
         position: relative;
         img {
             width: 100%;
             height: auto;
-            display: block;
             border: 2px solid $red-3;
             border-radius: $radius;
         }
@@ -22,15 +30,13 @@
             padding: 0 0.5rem;
             border-radius: $radius;
             overflow: hidden;
-            background-color: #ed1d24bd;
+            background-color: $transp-red-2;
             text-align: center;
             transition: $ease-trans;
             h4 {
                 margin-bottom: 1rem;
                 opacity: 0;
                 line-height: 1.25;
-                text-transform: capitalize;
-                letter-spacing: $space;
                 transition: inherit;
             }
             a {
@@ -38,9 +44,7 @@
                 padding: 0.5rem;
                 border: 1px solid $white;
                 border-radius: $radius;
-                color: $white;
                 opacity: 0;
-                letter-spacing: $space;
                 text-transform: uppercase;
                 transition: inherit;
                 &:hover {
@@ -63,81 +67,11 @@
                 border: 2px solid $blue;
             }
             div {
-                background-color: rgba(68, 157, 212, 0.76);
+                background-color: $transp-blue-2;
                 a:hover {
                     color: $blue;
                 }
             }      
         }
     }
-}
-
-.comic {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 2rem;
-    img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border: 2px solid $red-3;
-        border-radius: $radius;
-    }
-    h4 {
-        margin-bottom: 1.5rem;
-        font-size: 1.2rem;
-        letter-spacing: $space;
-        text-transform: capitalize;
-        span {
-            color: $yellow;
-        }
-    }
-    p {
-        margin-bottom: 1.5rem;
-        font-size: 1.2rem;
-        font-style: italic;
-        line-height: 1.5;
-    }
-    ul {
-        display: flex;
-        flex-flow: row wrap;
-        column-gap: 0.5rem;
-        row-gap: 0.5rem;
-        margin-bottom: 1.5rem;
-        li {
-            flex-shrink: 0;
-        }
-        a {
-            display: inline-block;
-            padding: 0.5rem;
-            border-radius: $radius;
-            background-color: $blue;
-            color: $white;
-            transition: $ease-trans;
-            &:hover {
-                background-color: $blue-2;
-            }
-        }
-        p {
-            margin-bottom: 0;
-        }
-    }
-}
-
-@media screen and (max-width: 1024px) {
-    .comics-wrapper {
-        grid-template-columns: repeat(3, 1fr);
-    }    
-}
-
-@media screen and (max-width: 768px) {
-    .comics-wrapper {
-        grid-template-columns: repeat(2, 1fr);
-    }    
-}
-
-@media screen and (max-width: 480px) {
-    .comics-wrapper {
-        grid-template-columns: repeat(1, 1fr);
-    }    
 }

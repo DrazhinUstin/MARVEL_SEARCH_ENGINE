@@ -7,6 +7,11 @@
     <title>Marvel Heroes || Comics Area</title>
     <script src="https://kit.fontawesome.com/88b18bb1d4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../images/slide-3.jpg') no-repeat bottom/cover;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -28,7 +33,7 @@
                 </li>
                 <li>
                     <a href="favorites.html">Favorites</a>
-                    <span class="menu-favorites-count">0</span>
+                    <span class="favorites-count">0</span>
                 </li>
             </ul>
         </div>
@@ -45,7 +50,7 @@
             Comics Area
         </div>
     </header>
-    <section class="section">
+    <section class="section main">
         <a href="#" id="open-filters-btn" class="border-btn">Show filters</a>
         <form class="filters-form">
             <div>
@@ -122,7 +127,7 @@
                     </li>
                     <li>
                         <a href="favorites.html">Favorites</a>
-                        <span class="menu-favorites-count">15</span>
+                        <span class="favorites-count">15</span>
                     </li>
                 </ul>
             </div>
@@ -135,11 +140,6 @@
             </p>
         </section>
     </footer>
-    <div class="loading">
-        <div>
-            <span></span>
-        </div>
-    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script type="module" src="js/comics.js"></script>
 </body>

@@ -3,6 +3,10 @@
     .section > div:first-child {
         @extend %flex-center;
         column-gap: 4rem;
+        @include for-size(medium) {
+            flex-direction: column;
+            row-gap: 2rem;
+        }
     }
     p {
         text-align: center;
@@ -10,6 +14,12 @@
         font-style: italic;
         line-height: 1.5;
         letter-spacing: $space;
+        @include for-size(medium) {
+            font-size: 1rem;
+        }
+        @include for-size(small) {
+            letter-spacing: unset;
+        }
         a {
             color: $yellow;
             text-transform: uppercase;
@@ -21,21 +31,19 @@
     display: flex;
     flex-flow: column wrap;
     row-gap:0.25rem;
+    @include for-size(medium) {
+        flex-flow: row wrap;
+        justify-content: center;
+        column-gap: 0.25rem;
+    }
     li {
         flex-shrink: 0;
         &:last-child {
             position: relative;
             span {
                 position: absolute;
-                right: -0.75rem;
                 top: -0.25rem;
-                width: 1.25rem;
-                height: 1.25rem;
-                border-radius: 50%;
-                background-color: $red;
-                text-align: center;
-                font-size: 0.85rem;
-                line-height: 1.35rem;
+                right: -0.75rem;
             }
          }
         &:nth-child(even) a:hover {
@@ -46,9 +54,10 @@
         display: inline-block;
         padding: 0.5rem;
         border-radius: $radius;
-        color: $white;
         text-transform: uppercase;
-        letter-spacing: $space;
+        @include for-size(small) {
+            letter-spacing: unset;
+        }
         &:hover {
             background-color: $red-3;
         }
@@ -60,34 +69,4 @@
     height: 0.25rem;
     margin: 2rem auto;
     background-color: $blue-2;
-}
-
-@media screen and (max-width: 768px) {
-    .page-footer {
-        .section > div:first-child {
-            flex-direction: column;
-            row-gap: 2rem;
-        }
-        p {
-            font-size: 1rem;
-        }
-    }
-    .footer-menu {
-        flex-flow: row wrap;
-        justify-content: center;
-        column-gap: 0.25rem;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .page-footer {
-        p {
-            letter-spacing: unset;
-        }
-    }
-    .footer-menu {
-        a {
-            letter-spacing: unset;
-        }
-    }
 }

@@ -1,8 +1,12 @@
 .page-header {
     position: relative;
-    height: 40vh;
+    height: 45vh;
     @extend %grid-center;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/slide-1.jpg') no-repeat center/cover;
+    overflow: hidden;
+    background: linear-gradient($transp-black-2, $transp-black-2), url('../images/slide-1.jpg') no-repeat center/cover;
+    @include for-size(small) {
+        height: 55vh;
+    }
 }
 
 .stages {
@@ -14,6 +18,9 @@
         margin: 0 auto;
         overflow-x: scroll;
         @extend %hide-scrollbar;
+        @include for-size(small) {
+            width: 100vw;
+        }
     }
     a {
         position: relative;
@@ -21,11 +28,12 @@
         flex-shrink: 0;
         display: inline-block;
         padding: 0 0.5rem;
-        background-color: #ed1d249d;
-        color: $white;
+        background-color: $transp-red;
         line-height: 2rem;
-        letter-spacing: $space;
         transition: $ease-trans;
+        @include for-size(small) {
+            letter-spacing: unset;
+        }
         &:first-child {
             border-radius: $radius 0 0 $radius;
         }
@@ -49,7 +57,7 @@
             right: -0.75rem;
             border-top: 1rem solid transparent;
             border-bottom: 1rem solid transparent;
-            border-left: 0.75rem solid #ed1d249d;
+            border-left: 0.75rem solid $transp-red;
             transition: inherit;
         }
         &:not(:first-child)::before {
@@ -57,24 +65,10 @@
             position: absolute;
             top: 0;
             left: -0.75rem;
-            border-top: 1rem solid #ed1d249d;
-            border-bottom: 1rem solid #ed1d249d;
+            border-top: 1rem solid $transp-red;
+            border-bottom: 1rem solid $transp-red;
             border-left: 0.75rem solid transparent;
             transition: inherit;
-        }
-    }
-}
-
-@media screen and (max-width: 425px) {
-    .page-header {
-        height: 50vh;
-    }
-    .stages {
-        .section {
-            width: 100vw;
-        }
-        a {
-            letter-spacing: unset;
         }
     }
 }

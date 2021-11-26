@@ -2,7 +2,13 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 2rem;
-    article {
+    @include for-size(large) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .article {
+        @include for-size(medium) {
+            grid-gap: 1rem;
+        }
         &:nth-child(even) {
             a {
                 background-color: $blue;
@@ -25,15 +31,16 @@
     }
 }
 
-.character {
+.article {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 2rem;
+    @include for-size(medium) {
+        grid-template-columns: repeat(1, 1fr);
+    }
     h4 {
         margin-bottom: 1.5rem;
         font-size: 1.2rem;
-        text-transform: capitalize;
-        letter-spacing: $space;
         span {
             color: $yellow;
         }
@@ -44,28 +51,33 @@
         font-style: italic;
         line-height: 1.5;
     }
+    ul {
+        display: flex;
+        flex-flow: row wrap;
+        column-gap: 0.5rem;
+        row-gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        li {
+            flex-shrink: 0;
+        }
+        a {
+            border-radius: $radius;
+            letter-spacing: unset;
+        }
+        p {
+            margin-bottom: 0;
+        }
+    }
     img {
         width: 100%;
         height: auto;
-        display: block;
         border: 2px solid $red;
         border-radius: $radius-2;
     }
-}
-
-@media screen and (max-width: 1024px) {
-    .characters-wrapper {
-        grid-template-columns: repeat(1, 1fr);
+    &.comic {
+        img {
+            border-color: $red-3;
+            border-radius: $radius;
+        }
     }
-}
-
-@media screen and (max-width: 768px) {
-    .characters-wrapper {
-        article {
-            grid-gap: 1rem;
-        }    
-    }
-    .character {
-        grid-template-columns: repeat(1, 1fr);
-    }    
 }

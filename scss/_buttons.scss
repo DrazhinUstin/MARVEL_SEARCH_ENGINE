@@ -2,6 +2,15 @@
     @extend %flex-center;
     column-gap: 2rem;
     margin-top: 4rem;
+    text-align: center;
+    @include for-size(small) {
+        display: grid;
+        grid-template-columns: repeat(1, auto);
+        row-gap: 1rem;
+    }
+    &.hidden {
+        display: none;
+    }
 }
 
 .btn {
@@ -9,12 +18,15 @@
     padding: 0.5rem;
     border-radius: $radius-2;
     background-color: $red;
-    color: $white;
     transition: $ease-trans;
-    text-transform: capitalize;
-    letter-spacing: $space;
     &:hover {
         background-color: $red-2;
+    }
+    &.blue {
+        background-color: $blue;
+        &:hover {
+            background-color: $blue-2;
+        }
     }
 }
 
@@ -22,25 +34,17 @@
     display: inline-block;
     padding: 1rem;
     border-radius: $radius;
-    background-color: #ed1d2459;
-    color: $white;
+    background-color: $transp-red;
     font-size: 1.2rem;
     text-transform: uppercase;
-    letter-spacing: $space;
     transition: $ease-trans;
     &:hover {
         background-color: $red-3;
     }
     &.blue {
-        background-color: rgba(68, 157, 212, 0.349);
+        background-color: $transp-blue;
         &:hover {
             background-color: $blue;
-        }
-    }
-    &.yellow {
-        background-color: #bda41679;
-        &:hover {
-            background-color: $yellow-2;
         }
     }
 }
@@ -48,18 +52,16 @@
 .border-btn {
     display: inline-block;
     padding: 0.75rem 1rem;
-    @include set-border-color($blue);
+    @include set-btn-border-color($blue);
     border-radius: $radius;
     background-color: inherit;
-    color: $white;
     font-size: 1.2rem;
     text-transform: uppercase;
-    letter-spacing: $space;
     transition: $ease-trans;
     &.red {
-        @include set-border-color($red-3);
+        @include set-btn-border-color($red-3);
     }
     &.yellow {
-        @include set-border-color($yellow-2);
+        @include set-btn-border-color($yellow-2);
     }
 }

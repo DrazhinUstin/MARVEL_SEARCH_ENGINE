@@ -1,13 +1,12 @@
 .loading {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     @extend %grid-center;
     visibility: hidden;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: $transp-black;
     opacity: 0;
     transition: $ease-trans;
     z-index: 999;
@@ -29,12 +28,65 @@
             border: 0.25rem solid $red;
             border-right-color: transparent;
             border-radius: 50%;
-            animation: loading 0.6s linear 0s infinite;
+            animation: circling 0.6s linear 0s infinite;
         }
     }
 }
 
-@keyframes loading {
+.preloader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    @extend %grid-center;
+    background: inherit;
+    transition: $ease-trans;
+    z-index: 999;
+    &.hide {
+        visibility: hidden;
+        opacity: 0;
+    }
+    span:first-child {
+        position: relative;
+        width: 6rem;
+        height: 6rem;
+        @extend %grid-center;
+        border: 0.1rem solid $yellow;
+        border-radius: 50%;
+        background: transparent;
+        animation: circling 1.5s linear 0s infinite;
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translate(50%);
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: $blue;
+        }
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            transform: translate(-50%);
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: $red-3;
+        }
+    }
+    span:last-child {
+        position: absolute;
+        color: $white;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 1.2rem;
+        text-transform: capitalize;
+    }
+}
+
+@keyframes circling {
     0% {
         transform: rotate(0);
     }

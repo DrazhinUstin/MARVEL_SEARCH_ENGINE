@@ -38,7 +38,7 @@ select.form-input {
         cursor: pointer;
         &::before {
             content: '';
-            width: 1.5rem;
+            flex: 0 0 1.5rem;
             height: 1.5rem;
             background-color: $white;
         }
@@ -60,20 +60,24 @@ select.form-input {
     display: flex;
     margin: 0 auto;
     transition: $ease-trans;
+    @include for-size(medium) {
+        width: 100%;
+    }
     input {
         border-radius: $radius-2 0 0 $radius-2;
     }
     button {
-        display: grid;
-        place-items: center;
+        @extend %grid-center;
         padding: 0 1rem;
         border: none;
         border-radius: 0 $radius-2 $radius-2 0;
         background-color: $red;
         color: $white;
         font-size: 1.4rem;
-        cursor: pointer;
         transition: inherit;
+        @include for-size(small) {
+            padding: 0 0.75rem;
+        }
         &:hover {
             background-color: $red-2;
         }
@@ -84,6 +88,12 @@ select.form-input {
     width: 50%;
     display: none;
     margin: 4rem 0;
+    @include for-size(large) {
+        width: 80%;
+    }
+    @include for-size(medium) {
+        width: 100%;
+    }
     &.active {
         display: block;
     }
@@ -98,24 +108,14 @@ select.form-input {
     }
     label {
         margin-bottom: 1rem;
+        line-height: 1.2;
         letter-spacing: $space;
     }
     footer {
         @extend %flex-between;
-    }
-}
-
-@media screen and (max-width: 1024px) {
-    .filters-form {
-        width: 80%;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .search-form {
-        width: 100%;
-    }
-    .filters-form {
-        width: 100%;
+       display: flex;
+       flex-flow: row wrap;
+       column-gap: 1rem;
+       row-gap: 1rem;
     }
 }

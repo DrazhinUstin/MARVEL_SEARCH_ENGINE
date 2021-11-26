@@ -3,7 +3,7 @@ import {getDataFromStorage} from './dataUtils.js';
 const setupNavigation = () => {
     const navbar = document.querySelector('.navbar');
     const menuToggleBtn = navbar.querySelector('.nav-menu-toggle-btn');
-    const favoritesCountDOM = [...document.querySelectorAll('.menu-favorites-count')];
+    const favoritesCountDOM = [...document.querySelectorAll('.favorites-count')];
     const favoritesData = getDataFromStorage('favorites');
 
     favoritesCountDOM.forEach(elem => elem.textContent = favoritesData.length);

@@ -8,13 +8,7 @@ const fetchData = async (url) => {
         const fullUrl = `${url}ts=${ts}&apikey=${public_key}&hash=${hash}`;
         const response = await fetch(fullUrl);
         const data = await response.json();
-        if (data.code === 200) {
-            return data.data.results.length ? data.data.results : alert('Sorry, nothing was found for your search...');
-        } else if (data.code === 409) {
-            alert('You must pass a four-digit number if you set the series year filter.');
-        } else {
-            alert('Sorry, something went wrong...');
-        }
+        return data;
     } catch (error) {
         console.log(error);
     }

@@ -1,20 +1,26 @@
 import {fetchData, destructureComicsData, getDataFromStorage, saveDatatoStorage} from './modules/dataUtils.js';
-import {displayComic} from './modules/displayUtils.js';
+import {displayComic, display404, toggleLoading} from './modules/displayUtils.js';
 import setupNavigation from './modules/setupNavigation.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
+    toggleLoading();
     const addToFavoritesBtn = document.getElementById('add-to-favorites-btn');
-    const favoritesCountDOM = [...document.querySelectorAll('.menu-favorites-count')];
+    const favoritesCountDOM = [...document.querySelectorAll('.favorites-count')];
     let favoritesData = getDataFromStorage('favorites');
     const id = +window.location.search.slice(4);
     const comicUrl = `https://gateway.marvel.com/v1/public/comics/${id}?`;
-    let comicData =  await fetchData(comicUrl);
-    if (!comicData) return;
-    comicData = destructureComicsData(comicData);
-    document.title = `Marvel Heroes || ${comicData[0].title}`;
-    displayComic(comicData);
-    checkIfInFavorites();
+    let data = await fetchData(comicUrl);
+    let comicData;
+    if (data && data.code === 200) {
+        comicData = destructureComicsData(data.data.results);
+        document.title = `Marvel Heroes || ${comicData[0].title}`;
+        displayComic(comicData);
+        checkIfInFavorites();
+    } else {
+        display404();
+    }
     setupNavigation();
+    toggleLoading();
 
     addToFavoritesBtn.addEventListener('click', (event) => {
         event.preventDefault();

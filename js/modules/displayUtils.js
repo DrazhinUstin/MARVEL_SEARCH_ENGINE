@@ -1,7 +1,7 @@
 const displayCharacters = (data) => {
     const charactersDOM = document.querySelector('.characters-wrapper');
     charactersDOM.innerHTML = data.map(item => {
-        return `<article class="character">
+        return `<article class="article">
                     <div>
                         <img src="${item.image}" alt="${item.name}">
                     </div>
@@ -30,8 +30,7 @@ const displayComics = (data) => {
 };
 
 const displayCharacter = (data) => {
-    const characterDOM = document.querySelector('.character');
-    const titleDOM = document.querySelector('.title h3');
+    const characterDOM = document.querySelector('.article.character');
     characterDOM.innerHTML = data.map(item => {
         return `<div>
                     <img src="${item.image}" alt="${item.name}">
@@ -45,13 +44,12 @@ const displayCharacter = (data) => {
                     <a href="${item.url}" class="border-btn yellow" target="_blank">Visit Marvel profile</a>
                 </div>`;
     }).join('');
-    displayNewStage(data[0]);
-    titleDOM.textContent = data[0].name;
+    displayTheRest(data[0]);
+    characterDOM.nextElementSibling.classList.remove('hidden');
 };
 
 const displayComic = (data) => {
-    const comicDOM = document.querySelector('.comic');
-    const titleDOM = document.querySelector('.title h3');
+    const comicDOM = document.querySelector('.article.comic');
     comicDOM.innerHTML = data.map(item => {
         return `<div>
                     <img src="${item.image}" alt="${item.title}">
@@ -59,23 +57,23 @@ const displayComic = (data) => {
                 <div>
                     <p>${item.description ? item.description : 'No description provided...'}</p>
                     <h4>Format: <span>${item.format}</span></h4>
-                    <h4>Number of pages: <span>${item.pageCount}</span></h4>
+                    <h4>Number of pages: <span>${item.pageCount ? item.pageCount : 'Unknown'}</span></h4>
                     <h4>Characters:</h4>
                     <ul>
                         ${item.characters.length ? item.characters.map(character => {
                             const index = character.resourceURI.lastIndexOf('/')
                             const id = character.resourceURI.slice(index + 1)
-                            return `<li><a href="character.html?id=${id}">${character.name}</a></li>`
+                            return `<li><a class="btn blue" href="character.html?id=${id}">${character.name}</a></li>`
                         }).join('') : '<p>No characters provided...</p>'}
                     </ul>
                     <a href="${item.url}" class="border-btn yellow" target="_blank">Visit marvel profile</a>
                 </div>`;
     }).join('');
-    displayNewStage(data[0]);
-    titleDOM.textContent = data[0].title;
+    displayTheRest(data[0]);
+    comicDOM.nextElementSibling.classList.remove('hidden');
 };
 
-const displayNewStage = (data) => {
+const displayTheRest = (data) => {
     const stagesDOM = document.querySelector('.stages .section');
     const newStage = document.createElement('a');
     const cutString = makeStringShorter(data.title || data.name);
@@ -83,10 +81,25 @@ const displayNewStage = (data) => {
     newStage.textContent = cutString;
     stagesDOM.append(newStage);
 
+    const titleDOM = document.querySelector('.title h3');
+    titleDOM.textContent = data.title || data.name;
+
     function makeStringShorter (string) {
         if (string.length <= 20) return string;
         return `${string.substring(0, 17).trim()}...`;
     }
+};
+
+const display404 = () => {
+    const errorDOM = document.querySelector('.section.main');
+    errorDOM.innerHTML = `
+        <div class="title">
+            <h3>Page not found...</h3>
+        </div>
+        <img src="./images/ufo.svg" alt="404-error" />
+        <div class="btn-container">
+            <a href="index.html" class="border-btn">Back home</a>
+        </div>`;
 };
 
 const displayPagination = (data) => {
@@ -100,12 +113,6 @@ const displayPagination = (data) => {
                             </button>`;
 };
 
-const setActivePage = (step) => {
-    const paginationDOM = document.querySelector('.pagination');
-    const pages = paginationDOM.querySelectorAll('span');
-    pages.forEach((page, index) => index === step ? page.classList.add('active') : page.classList.remove('active')); 
-};
-
 const displayItemsCount = (data) => {
     const itemsCountDOM = document.querySelector('.items-count');
     itemsCountDOM.innerHTML = `Total items: <span>${data.length}</span>`;
@@ -113,8 +120,14 @@ const displayItemsCount = (data) => {
 };
 
 const toggleLoading = () => {
-    const loading = document.querySelector('.loading');
-    loading.classList.toggle('show');
+    let loadingDOM = document.querySelector('.loading');
+    if (!loadingDOM) {
+        loadingDOM = document.createElement('div');
+        loadingDOM.classList.add('loading');
+        loadingDOM.innerHTML = '<div><span></span></div>';
+        document.body.append(loadingDOM);
+    }
+    loadingDOM.classList.toggle('show');
 };
 
-export {displayCharacters, displayComics, displayCharacter, displayComic, displayPagination, setActivePage, displayItemsCount, toggleLoading};
+export {displayCharacters, displayComics, displayCharacter, displayComic, display404, displayPagination, displayItemsCount, toggleLoading};

@@ -10,7 +10,7 @@ const setupSlider = () => {
         currentSlide.classList.remove('active');
         currentSlide.addEventListener('transitionend', stopAnimation);
         newSlide.classList.add('active', 'animation');
-        timerID = setTimeout(changeSlide, 10000);
+        timerID = setTimeout(changeSlide, 7500);
     };
 
     const stopAnimation = (event) => {
@@ -23,12 +23,12 @@ const setupSlider = () => {
             clearTimeout(timerID);
         } else {
             clearTimeout(timerID);
-            timerID = setTimeout(changeSlide, 10000);    
+            timerID = setTimeout(changeSlide, 7500);    
         }
     });
 
     slides[step].classList.add('active', 'animation');
-    let timerID = setTimeout(changeSlide, 10000);
+    let timerID = setTimeout(changeSlide, 7500);
 };
 
 export default setupSlider;

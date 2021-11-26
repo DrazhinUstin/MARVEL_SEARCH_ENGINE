@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <div class="preloader">
+        <span></span>
+        <span>Loading</span>
+    </div>
     <header class="hero">
         <nav class="navbar">
             <div class="section">
@@ -29,7 +33,7 @@
                     </li>
                     <li>
                         <a href="favorites.html">Favorites</a>
-                        <span class="menu-favorites-count">0</span>
+                        <span class="favorites-count">0</span>
                     </li>
                 </ul>
             </div>
@@ -44,6 +48,15 @@
             <div class="slide">
                 <img src="images/slide-3.jpg" alt="slide">
             </div>
+            <div class="slide">
+                <img src="images/slide-4.jpg" alt="slide">
+            </div>
+            <div class="slide">
+                <img src="images/slide-5.jpg" alt="slide">
+            </div>
+            <div class="slide">
+                <img src="images/slide-6.jpg" alt="slide">
+            </div>
             <div class="substrate"></div>
         </div>
         <div class="hero-section">
@@ -51,7 +64,7 @@
                 <img src="images/Marvel_Logo.svg" alt="logo" class="logo">
                 Heroes search
             </div>
-            <a href="comics.html" class="transparent-btn">Start search</a>
+            <a href="characters.html" class="transparent-btn">Start search</a>
         </div>
     </header>
     <section class="section favorites">
@@ -77,7 +90,7 @@
             <a href="favorites.html" id="watch-favorites-btn" class="border-btn red">Watch favorites</a>
         </div>
     </section>
-    <section class="section comics">
+    <section class="section">
         <div class="title">
             <h2>Comics Area</h2>
         </div>
@@ -99,7 +112,7 @@
             <a href="comics.html" class="border-btn">Watch comics</a>
         </div>
     </section>
-    <section class="section characters">
+    <section class="section">
         <div class="title">
             <h2>Heroes area</h2>
         </div>
@@ -122,7 +135,7 @@
         </div>
     </section>
     <footer class="page-footer">
-        <section class="section">
+        <div class="section">
             <div>
                 <div class="logo">
                     <img src="images/Marvel_Logo.svg" alt="logo" class="logo">
@@ -140,7 +153,7 @@
                     </li>
                     <li>
                         <a href="favorites.html">Favorites</a>
-                        <span class="menu-favorites-count">15</span>
+                        <span class="favorites-count">15</span>
                     </li>
                 </ul>
             </div>
@@ -151,7 +164,7 @@
                 All rights are reserved<br>
                 Data provided by <a href="https://developer.marvel.com/" target="_blank">Marvel</a>. © <span class="current-year">2021</span> MARVEL
             </p>
-        </section>
+        </div>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script type="module" src="js/index.js"></script>

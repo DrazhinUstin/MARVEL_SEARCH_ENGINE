@@ -1,5 +1,6 @@
-$primary-clr: #3A6073;
-$primary-clr-2: #16222A;
+$primary-clr: #345769;
+$primary-clr-2: #1d3646;
+$primary-clr-3: #16222A;
 $black: rgb(28, 28, 28);
 $white: rgb(255, 255, 255);
 $red: rgb(231, 97, 97);
@@ -10,10 +11,18 @@ $blue: rgb(68, 157, 212);
 $blue-2: rgb(21, 116, 175);
 $yellow: #e1c634;
 $yellow-2: #bda416;
+$transp-primary: #16222aef;
+$transp-black: rgba(0, 0, 0, 0.2);
+$transp-black-2: rgba(0, 0, 0, 0.4);
+$transp-red: #ed1d2459;
+$transp-red-2: #ed1d24bd;
+$transp-blue: rgba(68, 157, 212, 0.349);
+$transp-blue-2: rgba(68, 157, 212, 0.76);
+$transp-yellow: #bda41657;
 $radius: 0.25rem;
 $radius-2: 0.5rem;
 $space: 0.1rem;
-$shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+$shadow: 0 10px 15px $transp-black;
 $ease-trans: all 0.4s ease;
 $ease-in-out-trans: all 0.3s ease-in-out;
 $linear-trans: all 2s linear;
@@ -43,9 +52,19 @@ $linear-trans: all 2s linear;
     }
 }
 
-@mixin set-border-color ($color) {
+@mixin set-btn-border-color ($color) {
     border: 2px solid $color;
     &:hover {
         background-color: $color;
+    }
+}
+
+@mixin for-size($size) {
+    @if ($size == large) {
+        @media screen and (max-width: 1024px) {@content};
+    } @else if ($size == medium) {
+        @media screen and (max-width: 768px) {@content};
+    } @else if ($size == small) {
+        @media screen and (max-width: 500px) {@content};
     }
 }

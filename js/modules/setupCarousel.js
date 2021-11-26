@@ -102,29 +102,17 @@ const setupCarousel = (carouselWrapper) => {
     displaySquares();
 };
 
-const populateCarousel = (carouselWrapper, comicsData, charactersData) => {
+const populateCarousel = (carouselWrapper, data) => {
     const carousel = carouselWrapper.querySelector('.carousel');
-    if (comicsData) {
-        carousel.innerHTML = comicsData.map(item => {
-            return ` <div class="slide">
-                        <img src="${item.image}" alt="${item.title}">
-                        <footer>
-                            <a href="comic.html?id=${item.id}">Watch</a>
-                        </footer>
-                    </div>`;
-        }).join('');
-    } 
-    if (charactersData) {
-        carousel.innerHTML = charactersData.map(item => {
-            return ` <div class="slide">
-                        <img src="${item.image}" alt="${item.name}">
-                        <footer>
-                            <h4>${item.name}</h4>
-                            <a href="character.html?id=${item.id}">Watch</a>
-                        </footer>
-                    </div>`;
-        }).join('');
-    }
+    carousel.innerHTML = data.map(item => {
+        return ` <div class="slide">
+                    <img src="${item.image}" alt="${item.name || item.title}">
+                    <footer>
+                        ${item.name ? '<h4>' + item.name + '</h4>' : ''}
+                        <a href="${item.name ? 'character.html' : 'comic.html'}?id=${item.id}">Watch</a>
+                    </footer>
+                </div>`;
+    }).join('');
 };
 
 export {setupCarousel, populateCarousel};

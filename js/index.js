@@ -4,41 +4,43 @@ import setupSlider from "./modules/setupSlider.js";
 import setupNavigation from './modules/setupNavigation.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    setupSlider();
-    setupNavigation();
-
     const favoritesDOM = document.querySelector('.favorites .carousel-wrapper');
-    const favoritesCountDOM = document.querySelector('.favorites-count');
     const watchFavoritesBtn = document.getElementById('watch-favorites-btn');
-    const comicsDOM = document.querySelector('.comics .carousel-wrapper');
-    const charactersDOM = document.querySelector('.characters .carousel-wrapper');
-
     const favoritesData = getDataFromStorage('favorites');
-    favoritesCountDOM.textContent = favoritesData.length;
+
     if (!favoritesData.length) {
         favoritesDOM.innerHTML = ` <div class="message">You don't have favorite comics yet...</div>`
         watchFavoritesBtn.textContent = 'Add favorites';
         watchFavoritesBtn.href = 'comics.html';
     } else if (favoritesData.length < 4) {
-        populateCarousel(favoritesDOM, favoritesData, null);
+        populateCarousel(favoritesDOM, favoritesData);
         favoritesDOM.lastElementChild.remove();
         favoritesDOM.lastElementChild.remove();
     } else {
-        populateCarousel(favoritesDOM, favoritesData.slice(0, 10), null);
+        populateCarousel(favoritesDOM, favoritesData.slice(0, 10));
         setupCarousel(favoritesDOM);
     }
 
-    const comicsUrl = 'https://gateway.marvel.com/v1/public/comics?dateDescriptor=lastWeek&limit=10&';
-    let comicsData = await fetchData(comicsUrl);
-    if (!comicsData) return;
-    comicsData = destructureComicsData(comicsData);
-    populateCarousel(comicsDOM, comicsData, null);
-    setupCarousel(comicsDOM);
+    const urls = ['https://gateway.marvel.com/v1/public/comics?dateDescriptor=lastWeek&limit=10&', 'https://gateway.marvel.com/v1/public/characters?limit=10&'];
+    const wrappers = [...document.querySelectorAll('section.section')].filter(item => item !== favoritesDOM.parentElement);
 
-    const charactersUrl = 'https://gateway.marvel.com/v1/public/characters?limit=10&';
-    let charactersData = await fetchData(charactersUrl);
-    if (!charactersData) return;
-    charactersData = destructureCharactersData(charactersData);
-    populateCarousel(charactersDOM, null, charactersData);
-    setupCarousel(charactersDOM);
+    Promise.allSettled(urls.map(async (url, index) => {
+        let data = await fetchData(url);
+        if (!data || data.code !== 200 || !data.data.results.length) {
+            wrappers[index].remove();
+            return;
+        }
+        data = index === 0 ? destructureComicsData(data.data.results) : destructureCharactersData(data.data.results);
+        populateCarousel(wrappers[index], data);
+        setupCarousel(wrappers[index]);
+    }));
+
+    setupNavigation();
+});
+
+window.addEventListener('load', () => {
+    const preloader = document.querySelector('.preloader');
+    preloader.addEventListener('transitionend', () => preloader.remove());
+    preloader.classList.add('hide');
+    setupSlider();
 });

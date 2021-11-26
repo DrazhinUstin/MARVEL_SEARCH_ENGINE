@@ -1,21 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import 'config';
 @import 'preloader';
-@import 'buttons';
-@import 'characters';
-@import 'comics';
 @import 'navbar';
 @import 'hero';
+@import 'buttons';
 @import 'forms';
 @import 'carousel';
+@import 'characters';
+@import 'comics';
 @import 'pagination';
 @import 'page-header';
 @import 'page-footer';
 
-* {
+*, ::before, ::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+* {
     font-family: 'Poppins', sans-serif;
 }
 
@@ -25,9 +28,14 @@ html {
 
 body {
     min-height: 100vh;
-    background: linear-gradient($primary-clr 0%, $primary-clr-2 100%);
+    background: linear-gradient($primary-clr 0%, $primary-clr-3 100%);
     color: $white;
     line-height: 1;
+}
+
+h1, h2, h3, h4 {
+    text-transform: capitalize;
+    letter-spacing: $space;
 }
 
 li {
@@ -35,11 +43,26 @@ li {
 }
 
 a {
+    color: $white;
     text-decoration: none;
+    text-transform: capitalize;
+    letter-spacing: $space;
 }
 
 label {
     display: block;
+}
+
+img {
+    display: block;
+}
+
+img[alt="404-error"] {
+    width: 18rem;
+    margin: 0 auto;
+    @include for-size(medium) {
+        width: 14rem;
+    }
 }
 
 button {
@@ -60,30 +83,52 @@ input[type='number'] {
     max-width: 1200px;
     width: 90vw;
     margin: 4rem auto;
+    &.main {
+        min-height: 50vh;
+    }
 }
 
 .title {
     @extend %flex-center;
     margin-bottom: 4rem;
     text-align: center;
-    letter-spacing: $space;
-    text-transform: capitalize;
     h2 {
         font-size: 2.5rem;
+        @include for-size(small) {
+            font-size: 2rem;
+        }
     }
     h3 {
         font-size: 2rem;
+        line-height: 1.2;
+        @include for-size(medium) {
+            font-size: 1.8rem;
+        }
+        @include for-size(small) {
+            font-size: 1.5rem;
+        }
     }
     span {
         width: 1.5rem;
         height: 1.5rem;
         align-self: flex-start;
+        margin-top: -0.25rem;
         margin-left: 0.25rem;
-        border-radius: 50%;
-        background-color: $red;
-        color: $white;
-        line-height: 1.6;
-        text-align: center;
+        font-size: 1rem;
+        line-height: 1.65rem;
+    }
+}
+
+.logo {
+    @extend %flex-center;
+    flex-flow: column wrap;
+    row-gap: 1rem;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: $space;
+    user-select: none;
+    img {
+        width: 10rem;
     }
 }
 
@@ -91,6 +136,16 @@ input[type='number'] {
     text-align: center;
     font-size: 1.2rem;
     font-style: italic;
+}
+
+.favorites-count {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background-color: $red;
+    text-align: center;
+    font-size: 0.85rem;
+    line-height: 1.35rem;
 }
 
 .items-count {
@@ -118,24 +173,21 @@ input[type='number'] {
     @extend %grid-center;
     border: none;
     border-radius: $radius;
-    background-color: #ed1d2462;
+    background-color: $transp-red;
     color: $white;
     font-size: 1.5rem;
     transition: $ease-trans;
-    &.show {
-        transform: translateX(0);
-    }
-    &:hover {
-        background-color: $red-3;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    #scroll-top-btn {
+    @include for-size(medium) {
         bottom: 1rem;
         right: 1rem;
         width: 2.2rem;
         height: 2.2rem;
         font-size: 1.2rem;
+    }
+    &.show {
+        transform: translateX(0);
+    }
+    &:hover {
+        background-color: $red-3;
     }
 }

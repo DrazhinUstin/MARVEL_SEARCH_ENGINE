@@ -7,6 +7,11 @@
     <title>Marvel Heroes ||</title>
     <script src="https://kit.fontawesome.com/88b18bb1d4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../images/slide-3.jpg') no-repeat bottom/cover;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -28,7 +33,7 @@
                 </li>
                 <li>
                     <a href="favorites.html">Favorites</a>
-                    <span class="menu-favorites-count">0</span>
+                    <span class="favorites-count">0</span>
                 </li>
             </ul>
         </div>
@@ -45,12 +50,12 @@
             Comics Area
         </div>
     </header>
-    <section class="section">
+    <section class="section main">
         <div class="title">
             <h3></h3>
         </div>
-        <article class="comic"></article>
-        <div class="btn-container">
+        <article class="article comic"></article>
+        <div class="btn-container hidden">
             <a href="#" id="add-to-favorites-btn" class="transparent-btn blue">Add to favorites</a>
         </div>
     </section>
@@ -73,7 +78,7 @@
                     </li>
                     <li>
                         <a href="favorites.html">Favorites</a>
-                        <span class="menu-favorites-count">15</span>
+                        <span class="favorites-count">15</span>
                     </li>
                 </ul>
             </div>

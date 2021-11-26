@@ -7,7 +7,16 @@
         top: 0;
         left: 0;
         right: 0;
-        background: inherit;
+        background: transparent;
+        z-index: 100;
+        button {
+            z-index: 101;
+        }
+        ul {
+            @include for-size(medium) {
+                top: 0;
+            }
+        }
     }
 }
 
@@ -35,7 +44,7 @@
         visibility: visible;
     }
     &.animation {
-        animation: scaling 20s linear 0s infinite alternate;
+        animation: scaling 15s linear 0s infinite alternate;
     }
 }
 
@@ -52,7 +61,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: $transp-black-2;
 }
 
 .hero-section {
@@ -64,28 +73,4 @@
     a {
         padding: 1rem 2rem;
     }
-}
-
-.logo {
-    @extend %flex-center;
-    flex-flow: column wrap;
-    row-gap: 1rem;
-    color: $white;
-    font-size: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
-    user-select: none;
-    img {
-        width: 10rem;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .hero {
-        .navbar {
-            ul {
-                top: 0;
-            }
-        }
-    }  
 }
