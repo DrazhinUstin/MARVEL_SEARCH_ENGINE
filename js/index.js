@@ -1,4 +1,5 @@
-import {fetchData, destructureCharactersData, destructureComicsData, getDataFromStorage} from "./modules/dataUtils.js";
+import {fetchData, destructureCharactersData, destructureComicsData, getFromLocalStorage} from "./modules/dataUtils.js";
+import {hidePreloader} from "./modules/displayUtils.js";
 import {setupCarousel, populateCarousel} from "./modules/setupCarousel.js";
 import setupSlider from "./modules/setupSlider.js";
 import setupNavigation from './modules/setupNavigation.js';
@@ -6,7 +7,7 @@ import setupNavigation from './modules/setupNavigation.js';
 document.addEventListener('DOMContentLoaded', async () => {
     const favoritesDOM = document.querySelector('.favorites .carousel-wrapper');
     const watchFavoritesBtn = document.getElementById('watch-favorites-btn');
-    const favoritesData = getDataFromStorage('favorites');
+    const favoritesData = getFromLocalStorage('favorites');
 
     if (!favoritesData.length) {
         favoritesDOM.innerHTML = ` <div class="message">You don't have favorite comics yet...</div>`
@@ -39,8 +40,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 window.addEventListener('load', () => {
-    const preloader = document.querySelector('.preloader');
-    preloader.addEventListener('transitionend', () => preloader.remove());
-    preloader.classList.add('hide');
+    hidePreloader();
     setupSlider();
 });

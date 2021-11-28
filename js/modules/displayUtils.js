@@ -36,7 +36,7 @@ const displayCharacter = (data) => {
                     <img src="${item.image}" alt="${item.name}">
                 </div>
                 <div>
-                    <p>${item.description.trim() ? item.description : 'No description provided...'}</p>
+                    ${item.description.trim() ? '<p>' + item.description + '</p>' : ''}
                     <h4>Comics: <span>${item.comics}</span></h4>
                     <h4>Series: <span>${item.series}</span></h4>
                     <h4>Stories: <span>${item.stories}</span></h4>
@@ -55,17 +55,15 @@ const displayComic = (data) => {
                     <img src="${item.image}" alt="${item.title}">
                 </div>
                 <div>
-                    <p>${item.description ? item.description : 'No description provided...'}</p>
+                    ${item.description ? '<p>' + item.description + '</p>' : ''}
                     <h4>Format: <span>${item.format}</span></h4>
-                    <h4>Number of pages: <span>${item.pageCount ? item.pageCount : 'Unknown'}</span></h4>
-                    <h4>Characters:</h4>
-                    <ul>
-                        ${item.characters.length ? item.characters.map(character => {
-                            const index = character.resourceURI.lastIndexOf('/')
-                            const id = character.resourceURI.slice(index + 1)
-                            return `<li><a class="btn blue" href="character.html?id=${id}">${character.name}</a></li>`
-                        }).join('') : '<p>No characters provided...</p>'}
-                    </ul>
+                    ${item.issueNumber ? '<h4>Issue number: <span>' + item.issueNumber + '</span></h4>' : ''}
+                    ${item.pageCount ? '<h4>Number of pages: <span>' + item.pageCount + '</span></h4>' : ''}
+                    ${item.characters.length ?  '<h4>Characters:</h4><ul>' + item.characters.map(character => {
+                        const index = character.resourceURI.lastIndexOf('/')
+                        const id = character.resourceURI.slice(index + 1)
+                        return `<li><a class="btn blue" href="character.html?id=${id}">${character.name}</a></li>`
+                    }).join('') + '</ul>' : ''}
                     <a href="${item.url}" class="border-btn yellow" target="_blank">Visit marvel profile</a>
                 </div>`;
     }).join('');
@@ -102,15 +100,21 @@ const display404 = () => {
         </div>`;
 };
 
-const displayPagination = (data) => {
+const displayPagination = (data, step) => {
     const paginationDOM = document.querySelector('.pagination');
+    if (!data) {
+        paginationDOM.innerHTML = '';
+        paginationDOM.classList.remove('active');
+        return;
+    }
     paginationDOM.innerHTML = `<button class="prev-btn">
                                 <i class="fas fa-angle-double-left"></i>
                             </button>
-                            ${data.map((_, index) => `<span class="${index === 0 ? 'active' : ''}">${index + 1}</span>`).join('')}
+                            ${data.map((_, index) => `<span class="${index === step ? 'active' : ''}">${index + 1}</span>`).join('')}
                             <button class="next-btn">
                                 <i class="fas fa-angle-double-right"></i>
                             </button>`;
+    paginationDOM.classList.add('active');
 };
 
 const displayItemsCount = (data) => {
@@ -119,15 +123,10 @@ const displayItemsCount = (data) => {
     itemsCountDOM.classList.add('active');
 };
 
-const toggleLoading = () => {
-    let loadingDOM = document.querySelector('.loading');
-    if (!loadingDOM) {
-        loadingDOM = document.createElement('div');
-        loadingDOM.classList.add('loading');
-        loadingDOM.innerHTML = '<div><span></span></div>';
-        document.body.append(loadingDOM);
-    }
-    loadingDOM.classList.toggle('show');
+const hidePreloader = () => {
+    const preloader = document.querySelector('.preloader');
+    preloader.addEventListener('transitionend', () => preloader.remove());
+    preloader.classList.add('hide');
 };
 
-export {displayCharacters, displayComics, displayCharacter, displayComic, display404, displayPagination, displayItemsCount, toggleLoading};
+export {displayCharacters, displayComics, displayCharacter, displayComic, display404, displayPagination, displayItemsCount, hidePreloader};

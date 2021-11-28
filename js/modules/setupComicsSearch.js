@@ -1,8 +1,9 @@
 import {fetchData, destructureComicsData} from "./dataUtils.js";
-import {displayComics, toggleLoading} from "./displayUtils.js";
+import {displayComics} from "./displayUtils.js";
 import Controller from "./Controller.js";
 
-const setupComicsSearch = (comicsUrl, immediateLaunch) => {
+const setupComicsSearch = (comicsUrl, immediateLaunch, data) => {
+    const loading = document.querySelector('.loading');
     const filtersDOM = document.querySelector('.filters-form');
     const titleFilter = document.getElementById('comic-title-filter');
     const startYearFilter = document.getElementById('start-year-filter');
@@ -15,12 +16,9 @@ const setupComicsSearch = (comicsUrl, immediateLaunch) => {
     const clearFiltersBtn = document.getElementById('clear-filters-btn');
     let comicsData;
 
-    const controller = new Controller(displayComics, 12);
-    controller.setupPagination();
-
     applyFiltersBtn.addEventListener('click', async (event) => {
         event.preventDefault();
-        toggleLoading();
+        loading.classList.remove('hide');
         const format = formatFilter.value;
         const formatType = formatTypeFilter.value;
         const variant = variantFilter.checked;
@@ -29,10 +27,10 @@ const setupComicsSearch = (comicsUrl, immediateLaunch) => {
         const year = startYearFilter.value.trim();
         const fullComicsUrl = `${comicsUrl}${format !== 'all' ? 'format=' + format + '&' : ''}${formatType !== 'all' ? 'formatType=' + formatType + '&' : ''}${variant ? 'noVariants=' + variant + '&' : ''}${date !== 'all' ? 'dateDescriptor=' + date + '&' : ''}${title ? 'titleStartsWith=' + title + '&' : ''}${year ? 'startYear=' + year + '&' : ''}limit=100&`;
         const data = await fetchData(fullComicsUrl);
-        toggleLoading();
+        loading.classList.add('hide');
         if (data.code === 200 && data.data.results.length) {
             comicsData = destructureComicsData(data.data.results);
-            controller.displayData(comicsData);
+            controller.displayData(comicsData, 0);
         } else if (data.code === 200 && !data.data.results.length) {
             alert('Sorry, nothing was found for your search...');
         } else if (data.code === 409) {
@@ -59,7 +57,16 @@ const setupComicsSearch = (comicsUrl, immediateLaunch) => {
         startYearFilter.value = '';
     });
 
-    if (immediateLaunch) applyFiltersBtn.click();
+    const controller = new Controller(displayComics, 12, 'comics');
+    controller.setupPagination();
+    if (!immediateLaunch) return;
+    if (data) {
+        let comicsData = data.data;
+        controller.displayData(comicsData, data.step);
+        loading.classList.add('hide');
+    } else {
+        applyFiltersBtn.click();
+    }
 };
 
 export default setupComicsSearch;

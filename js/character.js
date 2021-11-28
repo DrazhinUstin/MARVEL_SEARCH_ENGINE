@@ -1,10 +1,10 @@
 import {fetchData, destructureCharactersData} from "./modules/dataUtils.js";
-import {displayCharacter, display404, toggleLoading} from "./modules/displayUtils.js";
+import {displayCharacter, display404} from "./modules/displayUtils.js";
 import setupComicsSearch from "./modules/setupComicsSearch.js";
 import setupNavigation from './modules/setupNavigation.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    toggleLoading();
+    const loading = document.querySelector('.loading');
     const id = window.location.search.slice(4);
     const characterUrl = `https://gateway.marvel.com/v1/public/characters/${id}?`;
     const comicsUrl = `https://gateway.marvel.com/v1/public/characters/${id}/comics?`;
@@ -19,5 +19,5 @@ document.addEventListener('DOMContentLoaded', async () => {
         display404();
     }
     setupNavigation();
-    toggleLoading();
+    loading.classList.add('hide');
 });

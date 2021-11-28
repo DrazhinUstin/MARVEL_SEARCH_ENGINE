@@ -1,13 +1,21 @@
-import {paginateData} from "./dataUtils.js";
+import {paginateData, saveToSessionStorage} from "./dataUtils.js";
 import {displayPagination, displayItemsCount} from "./displayUtils.js";
 
 class Controller {
 
-    constructor (func, amountPerPage) {
+    constructor (func, amountPerPage, key) {
         this.data = [];
+        this.paginatedData = [];
         this.step = 0;
         this.amountPerPage = amountPerPage;
         this.func = func;
+        this.key = key;
+    }
+
+    saveSession () {
+        if (!this.key) return;
+        else if (this.key === 'favorites') saveToSessionStorage(this.key, {step: this.step});
+        else saveToSessionStorage(this.key, {data: this.data, step: this.step});
     }
 
     setupPagination () {
@@ -17,8 +25,9 @@ class Controller {
             const pages = [...paginationDOM.querySelectorAll('span')];
             if (this.step > pages.length - 1) this.step = 0;
             if (this.step < 0) this.step = pages.length - 1;
+            this.saveSession();
             pages.forEach((page, index) => index === this.step ? page.classList.add('active') : page.classList.remove('active'));
-            this.func(this.data[this.step]);
+            this.func(this.paginatedData[this.step]);
         };
 
         paginationDOM.addEventListener('click', event => {
@@ -37,21 +46,21 @@ class Controller {
         });    
     }
 
-    displayData (data) {
-        const paginationDOM = document.querySelector('.pagination');
+    displayData (data, step) {
         this.data = data;
-        this.step = 0;
+        this.step = step;
         displayItemsCount(this.data);
         if (this.data.length > this.amountPerPage) {
-            this.data = paginateData(this.data, this.amountPerPage);
-            this.func(this.data[0]);
-            displayPagination(this.data);
-            paginationDOM.classList.add('active');
+            this.paginatedData = paginateData(this.data, this.amountPerPage);
+            if (this.step > this.paginatedData.length - 1) this.step = this.paginatedData.length - 1;
+            this.func(this.paginatedData[this.step]);
+            displayPagination(this.paginatedData, this.step);
         } else {
-            paginationDOM.innerHTML = '';
-            paginationDOM.classList.remove('active');
+            this.step = 0;
             this.func(this.data);
+            displayPagination(null);
         }
+        this.saveSession();
     }
 
 }

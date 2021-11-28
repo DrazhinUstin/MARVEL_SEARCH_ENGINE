@@ -4,7 +4,7 @@
     .section {
         height: 3rem;
         display: flex;
-        justify-content: right;
+        justify-content: flex-end;
         margin: 0 auto;
         @include for-size(medium) {
             width: 100%;

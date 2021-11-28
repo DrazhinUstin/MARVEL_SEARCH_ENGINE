@@ -1,12 +1,12 @@
-import {fetchData, destructureComicsData, getDataFromStorage, saveDatatoStorage} from './modules/dataUtils.js';
-import {displayComic, display404, toggleLoading} from './modules/displayUtils.js';
+import {fetchData, destructureComicsData, getFromLocalStorage, saveToLocalStorage} from './modules/dataUtils.js';
+import {displayComic, display404} from './modules/displayUtils.js';
 import setupNavigation from './modules/setupNavigation.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    toggleLoading();
+    const loading = document.querySelector('.loading');
     const addToFavoritesBtn = document.getElementById('add-to-favorites-btn');
     const favoritesCountDOM = [...document.querySelectorAll('.favorites-count')];
-    let favoritesData = getDataFromStorage('favorites');
+    let favoritesData = getFromLocalStorage('favorites');
     const id = +window.location.search.slice(4);
     const comicUrl = `https://gateway.marvel.com/v1/public/comics/${id}?`;
     let data = await fetchData(comicUrl);
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         display404();
     }
     setupNavigation();
-    toggleLoading();
+    loading.classList.add('hide');
 
     addToFavoritesBtn.addEventListener('click', (event) => {
         event.preventDefault();
@@ -37,12 +37,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 break;
         }
         favoritesCountDOM.forEach(elem => elem.textContent = favoritesData.length);
-        saveDatatoStorage('favorites', favoritesData);
+        saveToLocalStorage('favorites', favoritesData);
     });
 
     function checkIfInFavorites () {
-        const result = favoritesData.find(item => item.id === id);
-        if (result) {
+        const isInFavorites = favoritesData.find(item => item.id === id);
+        if (isInFavorites) {
             addToFavoritesBtn.textContent = 'Remove from favorites';
             addToFavoritesBtn.classList.remove('blue');
         }

@@ -76,6 +76,10 @@ const setupCarousel = (carouselWrapper) => {
     carousel.addEventListener('pointermove', moveSwipe);
     carousel.addEventListener('pointerup', endSwipe);
     carousel.addEventListener('pointerleave', endSwipe);
+    carousel.addEventListener('touchstart', event => {
+        if (event.target.tagName === 'A') return;
+        event.preventDefault();
+    });
 
     rightSwitchBtn.addEventListener('click', () => {
         step++;

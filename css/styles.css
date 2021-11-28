@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-.loading, .loading div, .preloader, .preloader span:first-child, .navbar ul a, .hero, .search-form button, .carousel-controls button, .pagination span, .page-header, #scroll-top-btn {
+.loading, .preloader, .loading div, .preloader span:first-child, .navbar ul a, .hero, .search-form button, .carousel-controls button, .pagination span, .page-header, #scroll-top-btn {
   display: -ms-grid;
   display: grid;
   place-items: center;
@@ -38,23 +38,25 @@
   display: none;
 }
 
-.loading {
+.loading, .preloader {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  visibility: hidden;
-  background-color: rgba(0, 0, 0, 0.2);
-  opacity: 0;
+  background: inherit;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
   z-index: 999;
 }
 
-.loading.show {
-  visibility: visible;
-  opacity: 1;
+.hide.loading, .hide.preloader {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.loading {
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .loading div {
@@ -75,21 +77,6 @@
   border-radius: 50%;
   -webkit-animation: circling 0.6s linear 0s infinite;
           animation: circling 0.6s linear 0s infinite;
-}
-
-.preloader {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: inherit;
-  -webkit-transition: all 0.4s ease;
-  transition: all 0.4s ease;
-  z-index: 999;
-}
-
-.preloader.hide {
-  visibility: hidden;
-  opacity: 0;
 }
 
 .preloader span:first-child {
@@ -169,9 +156,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: right;
-      -ms-flex-pack: right;
-          justify-content: right;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   margin: 0 auto;
 }
 
@@ -734,8 +721,6 @@ select.form-input {
 
 .carousel-wrapper {
   position: relative;
-  -ms-touch-action: none;
-      touch-action: none;
 }
 
 .carousel-wrapper > div:first-child {

@@ -1,12 +1,14 @@
-import {getDataFromStorage} from './dataUtils.js';
+import {getFromLocalStorage} from './dataUtils.js';
 
 const setupNavigation = () => {
     const navbar = document.querySelector('.navbar');
     const menuToggleBtn = navbar.querySelector('.nav-menu-toggle-btn');
     const favoritesCountDOM = [...document.querySelectorAll('.favorites-count')];
-    const favoritesData = getDataFromStorage('favorites');
+    const favoritesData = getFromLocalStorage('favorites');
+    const currentYearDOM = [...document.querySelectorAll('.current-year')];
 
     favoritesCountDOM.forEach(elem => elem.textContent = favoritesData.length);
+    currentYearDOM.forEach(elem => elem.textContent = new Date().getFullYear());
     const scrollTopBtn = createScrollTopBtn();
 
     menuToggleBtn.addEventListener('click', () => {

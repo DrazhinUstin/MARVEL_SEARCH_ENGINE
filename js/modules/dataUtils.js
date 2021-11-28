@@ -34,18 +34,26 @@ const destructureCharactersData = (data) => {
 
 const destructureComicsData = (data) => {
     return data.map(item => {
-        const {id, format, title, description, characters: {items: characters}, creators: {items: creators}, pageCount, thumbnail: {extension, path}, urls: [{url}]} = item;
+        const {id, format, title, issueNumber, description, characters: {items: characters}, pageCount, thumbnail: {extension, path}, urls: [{url}]} = item;
         const image = `${path}.${extension}`;
-        return {id, format, title, description, characters, creators, pageCount, image, url};
+        return {id, format, title, issueNumber, description, characters, pageCount, image, url};
     });
 };
 
-const saveDatatoStorage = (key, data) => {
+const saveToLocalStorage = (key, data) => {
     localStorage.setItem(key, JSON.stringify(data));
 };
 
-const getDataFromStorage = (key) => {
+const getFromLocalStorage = (key) => {
     return localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : [];
 };
 
-export {fetchData, paginateData, destructureCharactersData, destructureComicsData, saveDatatoStorage, getDataFromStorage};
+const saveToSessionStorage = (key, data) => {
+    sessionStorage.setItem(key, JSON.stringify(data));
+};
+
+const getFromSessionStorage = (key) => {
+    return sessionStorage.getItem(key) ? JSON.parse(sessionStorage.getItem(key)) : {};
+};
+
+export {fetchData, paginateData, destructureCharactersData, destructureComicsData, saveToLocalStorage, getFromLocalStorage, saveToSessionStorage, getFromSessionStorage};
