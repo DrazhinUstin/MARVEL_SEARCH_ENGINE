@@ -14,9 +14,9 @@ class Controller {
     }
 
     saveSession () {
-        if (!this.key) return;
-        else if (this.key === 'favorites') saveToSessionStorage(this.key, {step: this.step});
-        else saveToSessionStorage(this.key, {data: this.data, step: this.step, filters: this.filters});
+        if (this.key === 'favorites') saveToSessionStorage(this.key, {step: this.step});
+        else if (this.key === 'comicsByCharacter') saveToSessionStorage(this.key, {id: this.id, character: this.character, data: this.data, step: this.step, filters: this.filters});
+        else if (this.key) saveToSessionStorage(this.key, {data: this.data, step: this.step, filters: this.filters});
     }
 
     getFilters (filtersDOM) {

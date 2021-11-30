@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const favoritesData = getFromLocalStorage('favorites');
 
     if (!favoritesData.length) {
-        favoritesDOM.innerHTML = ` <div class="message">You don't have favorite comics yet...</div>`
+        favoritesDOM.innerHTML = `<div class="message">You don't have favorite comics yet...</div>`;
         watchFavoritesBtn.textContent = 'Add favorites';
         watchFavoritesBtn.href = 'comics.html';
     } else if (favoritesData.length < 4) {

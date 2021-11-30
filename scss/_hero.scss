@@ -66,11 +66,10 @@
 
 .hero-section {
     width: 90vw;
-    @extend %flex-center;
-    flex-flow: column wrap;
-    row-gap: 1rem;
+    text-align: center;
     z-index: 10;
     a {
+        margin-top: 1rem;
         padding: 1rem 2rem;
     }
 }

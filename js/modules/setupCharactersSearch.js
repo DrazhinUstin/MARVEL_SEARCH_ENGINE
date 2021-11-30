@@ -30,7 +30,7 @@ const setupCharactersSearch = (data) => {
 
     const controller = new Controller(displayCharacters, 10, 'characters');
     controller.setupPagination();
-    if (data) {
+    if (data.data) {
         let charactersData = data.data;
         controller.displayData(charactersData, data.step);
         loading.classList.add('hide');

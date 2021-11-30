@@ -5,7 +5,7 @@
   place-items: center;
 }
 
-.hero-section, .btn-container, .carousel-squares, .comics-wrapper article div, .pagination.active, .page-footer .section > div:first-child, .title, .logo {
+.btn-container, .carousel-squares, .comics-wrapper article div, .pagination.active, .page-footer .section > div:first-child, .title, .logo {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -432,15 +432,12 @@
 
 .hero-section {
   width: 90vw;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column wrap;
-          flex-flow: column wrap;
-  row-gap: 1rem;
+  text-align: center;
   z-index: 10;
 }
 
 .hero-section a {
+  margin-top: 1rem;
   padding: 1rem 2rem;
 }
 
@@ -559,19 +556,19 @@
 }
 
 .form-input::-webkit-input-placeholder {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .form-input:-ms-input-placeholder {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .form-input::-ms-input-placeholder {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .form-input::placeholder {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.4);
 }
 
 select.form-input {
@@ -1304,6 +1301,10 @@ select.form-input {
   text-transform: uppercase;
 }
 
+.page-footer p a:hover {
+  text-decoration: underline;
+}
+
 .footer-menu {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1383,6 +1384,16 @@ select.form-input {
   font-family: 'Poppins', sans-serif;
 }
 
+*::-moz-selection {
+  background-color: #1574af;
+  color: white;
+}
+
+*::selection {
+  background-color: #1574af;
+  color: white;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -1417,17 +1428,6 @@ label {
 
 img {
   display: block;
-}
-
-img[alt="404-error"] {
-  width: 18rem;
-  margin: 0 auto;
-}
-
-@media screen and (max-width: 768px) {
-  img[alt="404-error"] {
-    width: 14rem;
-  }
 }
 
 button {
@@ -1520,6 +1520,12 @@ input[type='number'] {
   text-align: center;
   font-size: 1.2rem;
   font-style: italic;
+  line-height: 1.2;
+}
+
+.message img {
+  width: 8rem;
+  margin: 4rem auto;
 }
 
 .favorites-count {

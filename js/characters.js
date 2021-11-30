@@ -4,10 +4,6 @@ import setupNavigation from './modules/setupNavigation.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     setupNavigation();
-    const data = getFromSessionStorage('characters');
-    if (Object.keys(data).length) {
-        setupCharactersSearch(data);
-    } else {
-        setupCharactersSearch();
-    }
+    const sessionData = getFromSessionStorage('characters');
+    setupCharactersSearch(sessionData);
 });

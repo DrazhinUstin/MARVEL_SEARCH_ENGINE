@@ -20,6 +20,10 @@
 
 * {
     font-family: 'Poppins', sans-serif;
+    &::selection {
+        background-color: $blue-2;
+        color: $white;
+    }
 }
 
 html {
@@ -55,14 +59,6 @@ label {
 
 img {
     display: block;
-}
-
-img[alt="404-error"] {
-    width: 18rem;
-    margin: 0 auto;
-    @include for-size(medium) {
-        width: 14rem;
-    }
 }
 
 button {
@@ -136,6 +132,11 @@ input[type='number'] {
     text-align: center;
     font-size: 1.2rem;
     font-style: italic;
+    line-height: 1.2;
+    img {
+        width: 8rem;
+        margin: 4rem auto;
+    }
 }
 
 .favorites-count {

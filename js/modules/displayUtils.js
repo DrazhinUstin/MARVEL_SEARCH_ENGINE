@@ -94,7 +94,9 @@ const display404 = () => {
         <div class="title">
             <h3>Page not found...</h3>
         </div>
-        <img src="./images/ufo.svg" alt="404-error" />
+        <div class="message">
+            <img src="./images/robot.png" alt="robot-icon" />
+        </div>
         <div class="btn-container">
             <a href="index.html" class="border-btn">Back home</a>
         </div>`;

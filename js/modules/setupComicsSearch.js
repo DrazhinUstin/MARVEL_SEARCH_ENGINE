@@ -2,7 +2,7 @@ import {fetchData, destructureComicsData} from "./dataUtils.js";
 import {displayComics} from "./displayUtils.js";
 import Controller from "./Controller.js";
 
-const setupComicsSearch = (comicsUrl, immediateLaunch, data) => {
+const setupComicsSearch = (comicsUrl, key, data) => {
     const loading = document.querySelector('.loading');
     const filtersDOM = document.querySelector('.filters-form');
     const titleFilter = document.getElementById('comic-title-filter');
@@ -59,15 +59,18 @@ const setupComicsSearch = (comicsUrl, immediateLaunch, data) => {
         startYearFilter.value = '';
     });
 
-    const controller = new Controller(displayComics, 12, 'comics');
+    const controller = new Controller(displayComics, 12, key);
+    if (data.id) {
+        controller.id = data.id;
+        controller.character = data.character;
+    };
     controller.setupPagination();
-    if (!immediateLaunch) return;
-    if (data) {
+    if (data.data) {
         let comicsData = data.data;
         controller.setFilters(filtersDOM, data.filters);
         controller.displayData(comicsData, data.step);
         loading.classList.add('hide');
-    } else {
+    } else if (key === 'comics') {
         applyFiltersBtn.click();
     }
 };
