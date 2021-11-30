@@ -3,6 +3,7 @@ import setupComicsSearch from './modules/setupComicsSearch.js';
 import setupNavigation from './modules/setupNavigation.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+    setupNavigation();
     const comicsUrl = `https://gateway.marvel.com/v1/public/comics?`;
     const data = getFromSessionStorage('comics');
     if (Object.keys(data).length) {
@@ -10,5 +11,4 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         setupComicsSearch(comicsUrl, true);
     }
-    setupNavigation();
 });

@@ -3,11 +3,11 @@ import setupCharactersSearch from './modules/setupCharactersSearch.js';
 import setupNavigation from './modules/setupNavigation.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+    setupNavigation();
     const data = getFromSessionStorage('characters');
     if (Object.keys(data).length) {
         setupCharactersSearch(data);
     } else {
         setupCharactersSearch();
     }
-    setupNavigation();
 });

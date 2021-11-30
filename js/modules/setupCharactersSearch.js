@@ -20,6 +20,7 @@ const setupCharactersSearch = (data) => {
         if (data.code === 200 && data.data.results.length) {
             charactersData = destructureCharactersData(data.data.results);
             controller.displayData(charactersData, 0);
+            controller.saveSession();
         } else if (data.code === 200 && !data.data.results.length) {
             alert('Sorry, nothing was found for your search...');
         } else {

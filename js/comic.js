@@ -3,6 +3,7 @@ import {displayComic, display404} from './modules/displayUtils.js';
 import setupNavigation from './modules/setupNavigation.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
+    setupNavigation();
     const loading = document.querySelector('.loading');
     const addToFavoritesBtn = document.getElementById('add-to-favorites-btn');
     const favoritesCountDOM = [...document.querySelectorAll('.favorites-count')];
@@ -19,7 +20,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
         display404();
     }
-    setupNavigation();
     loading.classList.add('hide');
 
     addToFavoritesBtn.addEventListener('click', (event) => {

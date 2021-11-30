@@ -30,7 +30,9 @@ const setupComicsSearch = (comicsUrl, immediateLaunch, data) => {
         loading.classList.add('hide');
         if (data.code === 200 && data.data.results.length) {
             comicsData = destructureComicsData(data.data.results);
+            controller.getFilters(filtersDOM);
             controller.displayData(comicsData, 0);
+            controller.saveSession();
         } else if (data.code === 200 && !data.data.results.length) {
             alert('Sorry, nothing was found for your search...');
         } else if (data.code === 409) {
@@ -62,6 +64,7 @@ const setupComicsSearch = (comicsUrl, immediateLaunch, data) => {
     if (!immediateLaunch) return;
     if (data) {
         let comicsData = data.data;
+        controller.setFilters(filtersDOM, data.filters);
         controller.displayData(comicsData, data.step);
         loading.classList.add('hide');
     } else {

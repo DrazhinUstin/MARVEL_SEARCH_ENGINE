@@ -4,6 +4,7 @@ import setupComicsSearch from "./modules/setupComicsSearch.js";
 import setupNavigation from './modules/setupNavigation.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
+    setupNavigation();
     const loading = document.querySelector('.loading');
     const id = window.location.search.slice(4);
     const characterUrl = `https://gateway.marvel.com/v1/public/characters/${id}?`;
@@ -18,6 +19,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
         display404();
     }
-    setupNavigation();
     loading.classList.add('hide');
 });

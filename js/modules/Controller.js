@@ -6,6 +6,7 @@ class Controller {
     constructor (func, amountPerPage, key) {
         this.data = [];
         this.paginatedData = [];
+        this.filters = [];
         this.step = 0;
         this.amountPerPage = amountPerPage;
         this.func = func;
@@ -15,7 +16,24 @@ class Controller {
     saveSession () {
         if (!this.key) return;
         else if (this.key === 'favorites') saveToSessionStorage(this.key, {step: this.step});
-        else saveToSessionStorage(this.key, {data: this.data, step: this.step});
+        else saveToSessionStorage(this.key, {data: this.data, step: this.step, filters: this.filters});
+    }
+
+    getFilters (filtersDOM) {
+        const filters = [...filtersDOM.querySelectorAll('.filter')];
+        this.filters = filters.map(filter => {
+            if (filter.type === 'checkbox') return {id: filter.id, value: filter.checked};
+            return {id: filter.id, value: filter.value};
+        });
+    }
+
+    setFilters (filtersDOM, filtersData) {
+        this.filters = filtersData;
+        const filters = [...filtersDOM.querySelectorAll('.filter')];
+        filters.forEach(filter => {
+            filter.value = filtersData.find(item => item.id === filter.id).value;
+            if (filter.type === 'checkbox' && filter.value === 'true') filter.checked = true;
+        });
     }
 
     setupPagination () {
@@ -60,7 +78,6 @@ class Controller {
             this.func(this.data);
             displayPagination(null);
         }
-        this.saveSession();
     }
 
 }

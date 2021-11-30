@@ -60,15 +60,15 @@
         <form class="filters-form">
             <div>
                 <label for="comic-title-filter">Enter the first letters of the comic title or full name:</label>
-                <input id="comic-title-filter" class="form-input" type="text" placeholder="Comic title starts with..." autocomplete="off">
+                <input id="comic-title-filter" class="form-input filter" type="text" placeholder="Comic title starts with..." autocomplete="off">
             </div>
             <div>
                 <label for="start-year-filter">Enter start year of the comic:</label>
-                <input id="start-year-filter" class="form-input" type="text" placeholder="2021" autocomplete="off">
+                <input id="start-year-filter" class="form-input filter" type="text" placeholder="2021" autocomplete="off">
             </div>
             <div>
                 <label for="comic-format-filter">Comic format:</label>
-                <select id="comic-format-filter" class="form-input">
+                <select id="comic-format-filter" class="form-input filter">
                     <option value="all" selected>all</option>
                     <option value="comic">comic</option>
                     <option value="magazine">magazine</option>
@@ -82,7 +82,7 @@
             </div>
             <div>
                 <label for="comic-format-type-filter">Comic format type:</label>
-                <select id="comic-format-type-filter" class="form-input">
+                <select id="comic-format-type-filter" class="form-input filter">
                     <option value="all" selected>all</option>
                     <option value="comic">comic</option>
                     <option value="collection">collection</option>
@@ -90,7 +90,7 @@
             </div>
             <div>
                 <label for="comic-date-descriptor-filter">Date descriptor:</label>
-                <select id="comic-date-descriptor-filter" class="form-input">
+                <select id="comic-date-descriptor-filter" class="form-input filter">
                     <option value="all">all</option>
                     <option value="lastWeek">last week</option>
                     <option value="thisWeek">this week</option>
@@ -99,7 +99,7 @@
                 </select>
             </div>
             <div class="form-checkbox-wrapper">
-                <input id="variant-comics-filter" class="form-checkbox" type="checkbox">
+                <input id="variant-comics-filter" class="form-checkbox filter" type="checkbox">
                 <label for="variant-comics-filter">Exclude variant comics from the result set</label>
             </div>
             <footer>

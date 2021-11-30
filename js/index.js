@@ -5,6 +5,7 @@ import setupSlider from "./modules/setupSlider.js";
 import setupNavigation from './modules/setupNavigation.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
+    setupNavigation();
     const favoritesDOM = document.querySelector('.favorites .carousel-wrapper');
     const watchFavoritesBtn = document.getElementById('watch-favorites-btn');
     const favoritesData = getFromLocalStorage('favorites');
@@ -35,8 +36,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         populateCarousel(wrappers[index], data);
         setupCarousel(wrappers[index]);
     }));
-
-    setupNavigation();
 });
 
 window.addEventListener('load', () => {
