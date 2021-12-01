@@ -17,9 +17,6 @@
     article {
         opacity: 0;
         transition: $ease-in-out-trans;
-        p {
-            line-height: 1.5;
-        }
         p:first-child {
             padding-top: 0.75rem;
         }
@@ -33,6 +30,7 @@
         line-height: 1.2;
         @include for-size(small) {
             font-size: 1rem;
+            letter-spacing: unset;
         }
     }
     i {

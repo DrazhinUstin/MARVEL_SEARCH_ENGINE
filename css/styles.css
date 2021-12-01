@@ -742,10 +742,6 @@ select.form-input {
   transition: all 0.3s ease-in-out;
 }
 
-.accordion > li article p {
-  line-height: 1.5;
-}
-
 .accordion > li article p:first-child {
   padding-top: 0.75rem;
 }
@@ -763,6 +759,7 @@ select.form-input {
 @media screen and (max-width: 500px) {
   .accordion > li h4 {
     font-size: 1rem;
+    letter-spacing: unset;
   }
 }
 
@@ -1035,7 +1032,6 @@ select.form-input {
   margin-bottom: 1.5rem;
   font-size: 1.2rem;
   font-style: italic;
-  line-height: 1.5;
 }
 
 .article ul {
@@ -1354,7 +1350,6 @@ select.form-input {
   text-align: center;
   font-size: 1.2rem;
   font-style: italic;
-  line-height: 1.5;
   letter-spacing: 0.1rem;
 }
 
@@ -1485,6 +1480,10 @@ body {
 h1, h2, h3, h4 {
   text-transform: capitalize;
   letter-spacing: 0.1rem;
+}
+
+p {
+  line-height: 1.5;
 }
 
 li {
