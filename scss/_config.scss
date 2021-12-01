@@ -26,6 +26,7 @@ $shadow: 0 10px 15px $transp-black;
 $ease-trans: all 0.4s ease;
 $ease-in-out-trans: all 0.3s ease-in-out;
 $linear-trans: all 2s linear;
+$instant-trans: all 0.1s ease;
 
 %grid-center {
     display: grid;

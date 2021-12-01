@@ -1,0 +1,54 @@
+.accordion > li {
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    border-radius: $radius;
+    background-color: $blue;
+    cursor: pointer;
+    transition: $instant-trans;
+    & > div:first-child {
+        @extend %flex-between;
+        column-gap: 0.5rem;
+    }
+    & > div:last-child {
+        height: 0;
+        overflow: hidden;
+        transition: $ease-trans;
+    }
+    article {
+        opacity: 0;
+        transition: $ease-in-out-trans;
+        p {
+            line-height: 1.5;
+        }
+        p:first-child {
+            padding-top: 0.75rem;
+        }
+        p:not(:last-child) {
+            padding-bottom: 0.5rem;
+        }
+    }
+    h4 {
+        font-size: 1.2rem;
+        font-weight: normal;
+        line-height: 1.2;
+        @include for-size(small) {
+            font-size: 1rem;
+        }
+    }
+    i {
+        font-size: 1.2rem;
+        transition: $ease-trans;
+        @include for-size(small) {
+            font-size: 1rem;
+        }
+    }
+    &.active {
+        background-color: $red-2;
+        article {
+            opacity: 1;
+        }
+        i {
+            transform: rotate(180deg);
+        }
+    }
+}

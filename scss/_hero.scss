@@ -18,6 +18,14 @@
             }
         }
     }
+    & > .section {
+        text-align: center;
+        z-index: 10;
+        a {
+            margin-top: 1rem;
+            padding: 1rem 2rem;
+        } 
+    }
 }
 
 .hero-slider {
@@ -62,14 +70,4 @@
     width: 100%;
     height: 100%;
     background-color: $transp-black-2;
-}
-
-.hero-section {
-    width: 90vw;
-    text-align: center;
-    z-index: 10;
-    a {
-        margin-top: 1rem;
-        padding: 1rem 2rem;
-    }
 }

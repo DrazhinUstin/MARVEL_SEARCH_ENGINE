@@ -3,10 +3,11 @@ import {hidePreloader} from "./modules/displayUtils.js";
 import {setupCarousel, populateCarousel} from "./modules/setupCarousel.js";
 import setupSlider from "./modules/setupSlider.js";
 import setupNavigation from './modules/setupNavigation.js';
+import setupAccordion from './modules/setupAccordion.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     setupNavigation();
-    const favoritesDOM = document.querySelector('.favorites .carousel-wrapper');
+    const favoritesDOM = document.querySelector('.section.favorites .carousel-wrapper');
     const watchFavoritesBtn = document.getElementById('watch-favorites-btn');
     const favoritesData = getFromLocalStorage('favorites');
 
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     const urls = ['https://gateway.marvel.com/v1/public/comics?dateDescriptor=lastWeek&limit=10&', 'https://gateway.marvel.com/v1/public/characters?limit=10&'];
-    const wrappers = [...document.querySelectorAll('section.section')].filter(item => item !== favoritesDOM.parentElement);
+    const wrappers = [...document.querySelectorAll('.section.comics, .section.characters')];
 
     Promise.allSettled(urls.map(async (url, index) => {
         let data = await fetchData(url);
@@ -36,6 +37,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         populateCarousel(wrappers[index], data);
         setupCarousel(wrappers[index]);
     }));
+
+    setupAccordion();
 });
 
 window.addEventListener('load', () => {

@@ -5,6 +5,7 @@
 @import 'hero';
 @import 'buttons';
 @import 'forms';
+@import 'accordion';
 @import 'carousel';
 @import 'characters';
 @import 'comics';
@@ -78,10 +79,14 @@ input[type='number'] {
 .section {
     max-width: 1200px;
     width: 90vw;
-    margin: 4rem auto;
+    margin: 0 auto;
     &.main {
         min-height: 50vh;
     }
+}
+
+section.section {
+    margin: 4rem auto;
 }
 
 .title {

@@ -58,6 +58,7 @@
         padding: 0.5rem;
         border-radius: $radius;
         text-transform: uppercase;
+        transition: $instant-trans;
         @include for-size(small) {
             letter-spacing: unset;
         }

@@ -15,7 +15,6 @@
     .section {
         display: flex;
         column-gap: 1rem;
-        margin: 0 auto;
         overflow-x: scroll;
         @extend %hide-scrollbar;
         @include for-size(small) {

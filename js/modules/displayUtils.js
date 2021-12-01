@@ -55,7 +55,7 @@ const displayComic = (data) => {
                     <img src="${item.image}" alt="${item.title}">
                 </div>
                 <div>
-                    ${item.description ? '<p>' + item.description + '</p>' : ''}
+                    ${item.description ? '<p>' + checkForTags(item.description) + '</p>' : ''}
                     <h4>Format: <span>${item.format}</span></h4>
                     ${item.issueNumber ? '<h4>Issue number: <span>' + item.issueNumber + '</span></h4>' : ''}
                     ${item.pageCount ? '<h4>Number of pages: <span>' + item.pageCount + '</span></h4>' : ''}
@@ -69,6 +69,13 @@ const displayComic = (data) => {
     }).join('');
     displayTheRest(data[0]);
     comicDOM.nextElementSibling.classList.remove('hidden');
+
+    function checkForTags (string) {
+        if (!string.includes('<ul>')) return string;
+        const div = document.createElement('div');
+        div.innerHTML = string;
+        return div.textContent;
+    }
 };
 
 const displayTheRest = (data) => {
