@@ -65,7 +65,7 @@
     }
 }
 
-.carousel-squares {
+.carousel-stages {
     @extend %flex-center;
     column-gap: 0.5rem;
     margin-top: 1rem;
@@ -76,6 +76,7 @@
         cursor: pointer;
         &.active {
             background-color: $red-3;
+            pointer-events: none;
         }
     }
     &.blue {
@@ -114,7 +115,7 @@
         color: $white;
         font-size: 2rem;
         transition: $ease-trans;
-        pointer-events: initial;
+        pointer-events: auto;
         @include for-size(medium) {
             width: 2rem;
             height: 2rem;

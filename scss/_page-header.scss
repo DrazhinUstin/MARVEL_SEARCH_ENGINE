@@ -12,13 +12,14 @@
 .stages {
     position: absolute;
     top: 0;
+    width: 100%;
     .section {
         display: flex;
         column-gap: 1rem;
-        overflow-x: scroll;
+        overflow-x: auto;
         @extend %hide-scrollbar;
         @include for-size(small) {
-            width: 100vw;
+            width: 100%;
         }
     }
     a {

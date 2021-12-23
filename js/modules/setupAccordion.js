@@ -15,7 +15,7 @@ const setupAccordion = () => {
         },
         {
             heading: "What are the favorites?",
-            article: "<p>If you liked some comic and don't want to search for it again, you can add it to your favorites. The comic will be stored there until you delete it from your favorites. You can also delete all favorites by clicking on the corresponding button in the favorites area.</p>"
+            article: "<p>If you liked some comic and don't want to search for it again, you can add it to your favorites. The comic will be stored there until you delete it from your favorites. You can also delete all favorites by clicking on the corresponding button on the favorites page.</p>"
         }
     ];
     
@@ -23,16 +23,14 @@ const setupAccordion = () => {
 
     const defineElemHeight = (elem) => {
         const article = elem.querySelector('article');
-        let totalHeight = 0;
-        [...article.children].forEach(child => totalHeight += child.offsetHeight);
-        elem.style.height = `${totalHeight}px`;
+        elem.style.height = `${article.offsetHeight}px`;
     };
     
     const populateAccordion = (data) => {
         accordion.innerHTML = data.map(item => {
             return `<li>
                         <div>
-                            <h4>${item.heading}</h4>
+                            <p>${item.heading}</p>
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div>

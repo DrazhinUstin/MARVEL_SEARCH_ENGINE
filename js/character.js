@@ -13,14 +13,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     const sessionData =  getFromSessionStorage('comicsByCharacter');
     if (sessionData.id === id) {
         characterData = sessionData.character;
-        document.title = `Marvel Heroes || ${characterData[0].name}`;
+        document.title = `${characterData[0].name} | Marvel Search Engine`;
         displayCharacter(characterData);
         setupComicsSearch(comicsUrl, 'comicsByCharacter', sessionData);
     } else {
         const data = await fetchData(characterUrl);
         if (data && data.code === 200) {
             characterData = destructureCharactersData(data.data.results);
-            document.title = `Marvel Heroes || ${characterData[0].name}`;
+            document.title = `${characterData[0].name} | Marvel Search Engine`;
             displayCharacter(characterData);
             setupComicsSearch(comicsUrl, 'comicsByCharacter', {id: id, character: characterData});
         } else {

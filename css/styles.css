@@ -5,7 +5,7 @@
   place-items: center;
 }
 
-.btn-container, .carousel-squares, .comics-wrapper article div, .pagination.active, .page-footer .section > div:first-child, .title, .logo {
+.btn-container, .carousel-stages, .comics-wrapper article div, .pagination.active, .page-footer .section > div:first-child, .title, .logo {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -248,8 +248,8 @@
     width: 1.5rem;
     height: 1.5rem;
     background-color: #1574af;
-    font-size: 1rem;
-    line-height: 1.65rem;
+    font-size: 0.95rem;
+    line-height: 1.6rem;
   }
 }
 
@@ -702,9 +702,6 @@ select.form-input {
 }
 
 .filters-form footer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
@@ -729,6 +726,29 @@ select.form-input {
           column-gap: 0.5rem;
 }
 
+.accordion > li > div:first-child p {
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 500px) {
+  .accordion > li > div:first-child p {
+    font-size: 1.1rem;
+  }
+}
+
+.accordion > li > div:first-child i {
+  font-size: 1.2rem;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+@media screen and (max-width: 500px) {
+  .accordion > li > div:first-child i {
+    font-size: 1rem;
+  }
+}
+
 .accordion > li > div:last-child {
   height: 0;
   overflow: hidden;
@@ -737,55 +757,27 @@ select.form-input {
 }
 
 .accordion > li article {
+  padding-top: 0.75rem;
   opacity: 0;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
 
-.accordion > li article p:first-child {
-  padding-top: 0.75rem;
-}
-
 .accordion > li article p:not(:last-child) {
-  padding-bottom: 0.5rem;
-}
-
-.accordion > li h4 {
-  font-size: 1.2rem;
-  font-weight: normal;
-  line-height: 1.2;
-}
-
-@media screen and (max-width: 500px) {
-  .accordion > li h4 {
-    font-size: 1rem;
-    letter-spacing: unset;
-  }
-}
-
-.accordion > li i {
-  font-size: 1.2rem;
-  -webkit-transition: all 0.4s ease;
-  transition: all 0.4s ease;
-}
-
-@media screen and (max-width: 500px) {
-  .accordion > li i {
-    font-size: 1rem;
-  }
+  margin-bottom: 0.5rem;
 }
 
 .accordion > li.active {
   background-color: #ca4242;
 }
 
-.accordion > li.active article {
-  opacity: 1;
-}
-
-.accordion > li.active i {
+.accordion > li.active > div:first-child i {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
+}
+
+.accordion > li.active article {
+  opacity: 1;
 }
 
 .carousel-wrapper {
@@ -884,13 +876,13 @@ select.form-input {
   background-color: #1574af;
 }
 
-.carousel-squares {
+.carousel-stages {
   -webkit-column-gap: 0.5rem;
           column-gap: 0.5rem;
   margin-top: 1rem;
 }
 
-.carousel-squares span {
+.carousel-stages span {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 0.75rem;
           flex: 0 0 0.75rem;
@@ -899,23 +891,24 @@ select.form-input {
   cursor: pointer;
 }
 
-.carousel-squares span.active {
+.carousel-stages span.active {
   background-color: #ed1d24;
+  pointer-events: none;
 }
 
-.carousel-squares.blue span {
+.carousel-stages.blue span {
   background-color: rgba(68, 157, 212, 0.349);
 }
 
-.carousel-squares.blue span.active {
+.carousel-stages.blue span.active {
   background-color: #449dd4;
 }
 
-.carousel-squares.yellow span {
+.carousel-stages.yellow span {
   background-color: #bda41657;
 }
 
-.carousel-squares.yellow span.active {
+.carousel-stages.yellow span.active {
   background-color: #e1c634;
 }
 
@@ -939,7 +932,7 @@ select.form-input {
   font-size: 2rem;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
-  pointer-events: initial;
+  pointer-events: auto;
 }
 
 @media screen and (max-width: 768px) {
@@ -1246,6 +1239,7 @@ select.form-input {
 .stages {
   position: absolute;
   top: 0;
+  width: 100%;
 }
 
 .stages .section {
@@ -1254,12 +1248,12 @@ select.form-input {
   display: flex;
   -webkit-column-gap: 1rem;
           column-gap: 1rem;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 @media screen and (max-width: 500px) {
   .stages .section {
-    width: 100vw;
+    width: 100%;
   }
 }
 
@@ -1411,7 +1405,7 @@ select.form-input {
 .footer-menu li:last-child span {
   position: absolute;
   top: -0.25rem;
-  right: -0.75rem;
+  right: -0.85rem;
 }
 
 .footer-menu li:nth-child(even) a:hover {
@@ -1548,6 +1542,23 @@ section.section {
   }
 }
 
+.title h2 ~ span {
+  width: 1.5rem;
+  height: 1.5rem;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin-top: -0.25rem;
+  margin-left: 0.15rem;
+  font-size: 0.95rem;
+  line-height: 1.6rem;
+}
+
+@media screen and (max-width: 500px) {
+  .title h2 ~ span {
+    margin-top: -0.4rem;
+  }
+}
+
 .title h3 {
   font-size: 2rem;
   line-height: 1.2;
@@ -1563,17 +1574,6 @@ section.section {
   .title h3 {
     font-size: 1.5rem;
   }
-}
-
-.title span {
-  width: 1.5rem;
-  height: 1.5rem;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
-  margin-top: -0.25rem;
-  margin-left: 0.25rem;
-  font-size: 1rem;
-  line-height: 1.65rem;
 }
 
 .logo {
@@ -1613,8 +1613,8 @@ section.section {
   border-radius: 50%;
   background-color: #e76161;
   text-align: center;
-  font-size: 0.85rem;
-  line-height: 1.35rem;
+  font-size: 0.8rem;
+  line-height: 1.4rem;
 }
 
 .items-count {

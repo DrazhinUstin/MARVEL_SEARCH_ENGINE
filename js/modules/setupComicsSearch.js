@@ -7,6 +7,7 @@ const setupComicsSearch = (comicsUrl, key, data) => {
     const filtersDOM = document.querySelector('.filters-form');
     const titleFilter = document.getElementById('comic-title-filter');
     const startYearFilter = document.getElementById('start-year-filter');
+    const issueNumberFilter = document.getElementById('issue-number-filter');
     const formatFilter = document.getElementById('comic-format-filter');
     const formatTypeFilter = document.getElementById('comic-format-type-filter');
     const dateDescriptorFilter = document.getElementById('comic-date-descriptor-filter');
@@ -14,7 +15,6 @@ const setupComicsSearch = (comicsUrl, key, data) => {
     const openFiltersBtn = document.getElementById('open-filters-btn');
     const applyFiltersBtn = document.getElementById('apply-filters-btn');
     const clearFiltersBtn = document.getElementById('clear-filters-btn');
-    let comicsData;
 
     applyFiltersBtn.addEventListener('click', async (event) => {
         event.preventDefault();
@@ -25,18 +25,19 @@ const setupComicsSearch = (comicsUrl, key, data) => {
         const date = dateDescriptorFilter.value;
         const title = titleFilter.value.trim();
         const year = startYearFilter.value.trim();
-        const fullComicsUrl = `${comicsUrl}${format !== 'all' ? 'format=' + format + '&' : ''}${formatType !== 'all' ? 'formatType=' + formatType + '&' : ''}${variant ? 'noVariants=' + variant + '&' : ''}${date !== 'all' ? 'dateDescriptor=' + date + '&' : ''}${title ? 'titleStartsWith=' + title + '&' : ''}${year ? 'startYear=' + year + '&' : ''}limit=100&`;
+        const issueNumber = issueNumberFilter.value.trim();
+        const fullComicsUrl = `${comicsUrl}${format !== 'all' ? 'format=' + format + '&' : ''}${formatType !== 'all' ? 'formatType=' + formatType + '&' : ''}${variant ? 'noVariants=' + variant + '&' : ''}${date !== 'all' ? 'dateDescriptor=' + date + '&' : ''}${title ? 'titleStartsWith=' + title + '&' : ''}${year ? 'startYear=' + year + '&' : ''}${issueNumber ? 'issueNumber=' + issueNumber + '&' : ''}limit=100&`;
         const data = await fetchData(fullComicsUrl);
         loading.classList.add('hide');
         if (data.code === 200 && data.data.results.length) {
-            comicsData = destructureComicsData(data.data.results);
+            const comicsData = destructureComicsData(data.data.results);
             controller.getFilters(filtersDOM);
             controller.displayData(comicsData, 0);
             controller.saveSession();
         } else if (data.code === 200 && !data.data.results.length) {
             alert('Sorry, nothing was found for your search...');
         } else if (data.code === 409) {
-            alert('You must pass a four-digit number if you set the series year filter.');
+            alert(data.status);
         } else {
             alert('Sorry, something went wrong...');
         }
@@ -57,6 +58,7 @@ const setupComicsSearch = (comicsUrl, key, data) => {
         dateDescriptorFilter.value = 'all';
         titleFilter.value = '';
         startYearFilter.value = '';
+        issueNumberFilter.value = '';
     });
 
     const controller = new Controller(displayComics, 12, key);
@@ -66,9 +68,8 @@ const setupComicsSearch = (comicsUrl, key, data) => {
     };
     controller.setupPagination();
     if (data.data) {
-        let comicsData = data.data;
         controller.setFilters(filtersDOM, data.filters);
-        controller.displayData(comicsData, data.step);
+        controller.displayData(data.data, data.step);
         loading.classList.add('hide');
     } else if (key === 'comics') {
         applyFiltersBtn.click();

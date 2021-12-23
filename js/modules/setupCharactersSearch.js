@@ -6,7 +6,6 @@ const setupCharactersSearch = (data) => {
     const loading = document.querySelector('.loading');
     const form = document.querySelector('.search-form');
     const input = form.querySelector('input');
-    let charactersData;
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -18,7 +17,7 @@ const setupCharactersSearch = (data) => {
         const data = await fetchData(url);
         loading.classList.add('hide');
         if (data.code === 200 && data.data.results.length) {
-            charactersData = destructureCharactersData(data.data.results);
+            const charactersData = destructureCharactersData(data.data.results);
             controller.displayData(charactersData, 0);
             controller.saveSession();
         } else if (data.code === 200 && !data.data.results.length) {
@@ -31,8 +30,7 @@ const setupCharactersSearch = (data) => {
     const controller = new Controller(displayCharacters, 10, 'characters');
     controller.setupPagination();
     if (data.data) {
-        let charactersData = data.data;
-        controller.displayData(charactersData, data.step);
+        controller.displayData(data.data, data.step);
         loading.classList.add('hide');
     } else {
         input.nextElementSibling.click();

@@ -19,8 +19,8 @@ const displayCharacters = (data) => {
 const displayComics = (data) => {
     const comicsDOM = document.querySelector('.comics-wrapper');
     comicsDOM.innerHTML = data.map(item => {
-        return ` <article>
-                    <img src="${item.image}" alt="comic-image">
+        return `<article>
+                    <img src="${item.image}" alt="${item.title}">
                     <div>
                         <h4>${item.title}</h4>
                         <a href="comic.html?id=${item.id}">Watch</a>
@@ -44,7 +44,7 @@ const displayCharacter = (data) => {
                     <a href="${item.url}" class="border-btn yellow" target="_blank">Visit Marvel profile</a>
                 </div>`;
     }).join('');
-    displayTheRest(data[0]);
+    displayHeader(data[0]);
     characterDOM.nextElementSibling.classList.remove('hidden');
 };
 
@@ -67,7 +67,7 @@ const displayComic = (data) => {
                     <a href="${item.url}" class="border-btn yellow" target="_blank">Visit marvel profile</a>
                 </div>`;
     }).join('');
-    displayTheRest(data[0]);
+    displayHeader(data[0]);
     comicDOM.nextElementSibling.classList.remove('hidden');
 
     function checkForTags (string) {
@@ -78,7 +78,7 @@ const displayComic = (data) => {
     }
 };
 
-const displayTheRest = (data) => {
+const displayHeader = (data) => {
     const stagesDOM = document.querySelector('.stages .section');
     const newStage = document.createElement('a');
     const cutString = makeStringShorter(data.title || data.name);
@@ -102,7 +102,7 @@ const display404 = () => {
             <h3>Page not found...</h3>
         </div>
         <div class="message">
-            <img src="./images/robot.png" alt="robot-icon" />
+            <img src="./images/robot.png" alt="robot-icon">
         </div>
         <div class="btn-container">
             <a href="index.html" class="border-btn">Back home</a>

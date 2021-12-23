@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let comicData;
     if (data && data.code === 200) {
         comicData = destructureComicsData(data.data.results);
-        document.title = `Marvel Heroes || ${comicData[0].title}`;
+        document.title = `${comicData[0].title} | Marvel Search Engine`;
         displayComic(comicData);
         checkIfInFavorites();
     } else {

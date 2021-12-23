@@ -8,6 +8,20 @@
     & > div:first-child {
         @extend %flex-between;
         column-gap: 0.5rem;
+        p {
+            font-size: 1.2rem;
+            line-height: 1.2;
+            @include for-size(small) {
+                font-size: 1.1rem;
+            }
+        }
+        i {
+            font-size: 1.2rem;
+            transition: $ease-trans;
+            @include for-size(small) {
+                font-size: 1rem;
+            }
+        }
     }
     & > div:last-child {
         height: 0;
@@ -15,38 +29,22 @@
         transition: $ease-trans;
     }
     article {
+        padding-top: 0.75rem;
         opacity: 0;
         transition: $ease-in-out-trans;
-        p:first-child {
-            padding-top: 0.75rem;
-        }
         p:not(:last-child) {
-            padding-bottom: 0.5rem;
-        }
-    }
-    h4 {
-        font-size: 1.2rem;
-        font-weight: normal;
-        line-height: 1.2;
-        @include for-size(small) {
-            font-size: 1rem;
-            letter-spacing: unset;
-        }
-    }
-    i {
-        font-size: 1.2rem;
-        transition: $ease-trans;
-        @include for-size(small) {
-            font-size: 1rem;
+            margin-bottom: 0.5rem;
         }
     }
     &.active {
         background-color: $red-2;
+        & > div:first-child {
+            i {
+                transform: rotate(180deg);
+            }
+        }
         article {
             opacity: 1;
-        }
-        i {
-            transform: rotate(180deg);
         }
     }
 }

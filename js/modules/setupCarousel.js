@@ -1,7 +1,7 @@
 const setupCarousel = (carouselWrapper) => {
     const carousel = carouselWrapper.querySelector('.carousel');
     const slides = [...carousel.querySelectorAll('.slide')];
-    const squaresDOM = carouselWrapper.querySelector('.carousel-squares');
+    const stagesDOM = carouselWrapper.querySelector('.carousel-stages');
     const leftSwitchBtn = carouselWrapper.querySelector('.left-switch-btn');
     const rightSwitchBtn = carouselWrapper.querySelector('.right-switch-btn');
     let initX = 0;
@@ -17,15 +17,16 @@ const setupCarousel = (carouselWrapper) => {
         slidesPerStep = Math.round(carousel.offsetWidth/slides[0].offsetWidth);
     };
 
+    const getClientX = (event) => event.touches ? event.touches[0].clientX : event.clientX; 
+
     const startSwipe = (event) => {
-        event.preventDefault();
         isDragging = true;
-        initX = event.clientX;
+        initX = getClientX(event);
     };
 
     const moveSwipe = (event) => {
         if (!isDragging) return;
-        currentX = event.clientX;
+        currentX = getClientX(event);
         xDiff = currentX - initX;
         currentTranslate = initTranslate + xDiff;
         displayTranslate();
@@ -42,23 +43,23 @@ const setupCarousel = (carouselWrapper) => {
 
     const displayTranslate = () => carousel.style.transform = `translateX(${currentTranslate}px)`;
 
-    const displaySquares = () => {
-        squaresDOM.innerHTML = slides.map(((_, index) => {
+    const displayStages = () => {
+        stagesDOM.innerHTML = slides.map(((_, index) => {
             if (index < slidesPerStep - 1) return;
             return '<span></span>';
         })).join('');
-        [...squaresDOM.children].forEach((square, index) => {
-            square.addEventListener('click', () => {
+        [...stagesDOM.children].forEach((stage, index) => {
+            stage.addEventListener('click', () => {
                 step = index;
                 switchSlide();
             });
         });
-        setActiveSquare();
+        setActiveStage();
     };
 
-    const setActiveSquare = () => {
-        [...squaresDOM.children].forEach((circle, index) => {
-            index === step ? circle.classList.add('active') : circle.classList.remove('active');
+    const setActiveStage = () => {
+        [...stagesDOM.children].forEach((stage, index) => {
+            index === step ? stage.classList.add('active') : stage.classList.remove('active');
         })
     };
 
@@ -68,18 +69,17 @@ const setupCarousel = (carouselWrapper) => {
         if (step > slides.length - slidesPerStep) step = 0;
         currentTranslate = -slideWidth * step;
         displayTranslate();
-        setActiveSquare();
+        setActiveStage();
         initTranslate = currentTranslate;
     };
 
-    carousel.addEventListener('pointerdown', startSwipe);
-    carousel.addEventListener('pointermove', moveSwipe);
-    carousel.addEventListener('pointerup', endSwipe);
-    carousel.addEventListener('pointerleave', endSwipe);
-    carousel.addEventListener('touchstart', event => {
-        if (event.target.tagName === 'A') return;
-        event.preventDefault();
-    });
+    carousel.addEventListener('mousedown', startSwipe);
+    carousel.addEventListener('mousemove', moveSwipe);
+    carousel.addEventListener('mouseup', endSwipe);
+    carousel.addEventListener('mouseleave', endSwipe);
+    carousel.addEventListener('touchstart', startSwipe);
+    carousel.addEventListener('touchmove', moveSwipe);
+    carousel.addEventListener('touchend', endSwipe);
 
     rightSwitchBtn.addEventListener('click', () => {
         step++;
@@ -94,22 +94,19 @@ const setupCarousel = (carouselWrapper) => {
     window.addEventListener('resize', () => {
         defineSlidesPerStep();
         switchSlide();
-        displaySquares();
+        displayStages();
     });
 
-    slides.forEach(slide => {
-        const slideImage = slide.querySelector('img');
-        slideImage.addEventListener('dragstart', event => event.preventDefault());
-    });
+    slides.forEach(slide => slide.addEventListener('dragstart', event => event.preventDefault()));
 
     defineSlidesPerStep();
-    displaySquares();
+    displayStages();
 };
 
 const populateCarousel = (carouselWrapper, data) => {
     const carousel = carouselWrapper.querySelector('.carousel');
     carousel.innerHTML = data.map(item => {
-        return ` <div class="slide">
+        return `<div class="slide">
                     <img src="${item.image}" alt="${item.name || item.title}">
                     <footer>
                         ${item.name ? '<h4>' + item.name + '</h4>' : ''}

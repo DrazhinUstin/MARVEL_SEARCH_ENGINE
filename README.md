@@ -1,4 +1,4 @@
-# MARVEL HEROES
+# MARVEL SEARCH ENGINE
 #### HTML, SCSS, JS project
 * This project will be interesting to fans of the Marvel universe. In it you will find detailed information about the characters of the universe, comics, new products and etc.
 * This project is based on the MARVEL database from https://developer.marvel.com/ __API__. All data is taken from there.
