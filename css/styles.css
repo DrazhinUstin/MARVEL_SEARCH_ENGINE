@@ -5,7 +5,7 @@
   place-items: center;
 }
 
-.btn-container, .carousel-stages, .comics-wrapper article div, .pagination.active, .page-footer .section > div:first-child, .title, .logo {
+.btn-container, .search-by-wrapper, .carousel-stages, .comics-wrapper article div, .alphabet, .pagination.active, .page-footer .section > div:first-child, .title, .logo {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -29,12 +29,12 @@
           align-items: center;
 }
 
-.stages .section {
+.alphabet, .stages .section {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
-.stages .section::-webkit-scrollbar {
+.alphabet::-webkit-scrollbar, .stages .section::-webkit-scrollbar {
   display: none;
 }
 
@@ -228,6 +228,10 @@
   .navbar ul li:nth-child(4) {
     -webkit-transition-delay: 0.4s;
             transition-delay: 0.4s;
+  }
+  .navbar ul li:nth-child(5) {
+    -webkit-transition-delay: 0.5s;
+            transition-delay: 0.5s;
   }
 }
 
@@ -542,6 +546,7 @@
   height: 2.5rem;
   padding: 0 1rem;
   border-radius: 0.5rem;
+  background-color: white;
   color: #1c1c1c;
   font-size: 1rem;
   -webkit-transition: all 0.4s ease;
@@ -570,7 +575,7 @@
 }
 
 select.form-input {
-  width: 11rem;
+  width: auto;
   padding: 0 0.5rem;
   text-transform: capitalize;
   cursor: pointer;
@@ -618,6 +623,14 @@ select.form-input {
   background-color: #ca4242;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
+}
+
+.search-by-wrapper {
+  -webkit-column-gap: 0.5rem;
+          column-gap: 0.5rem;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
 }
 
 .search-form {
@@ -698,7 +711,10 @@ select.form-input {
 .filters-form label {
   margin-bottom: 1rem;
   line-height: 1.2;
-  letter-spacing: 0.1rem;
+}
+
+.filters-form select {
+  width: 11rem;
 }
 
 .filters-form footer {
@@ -1041,18 +1057,9 @@ select.form-input {
   margin-bottom: 1.5rem;
 }
 
-.article ul li {
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-}
-
 .article ul a {
   border-radius: 0.25rem;
   letter-spacing: unset;
-}
-
-.article ul p {
-  margin-bottom: 0;
 }
 
 .article img {
@@ -1173,6 +1180,102 @@ select.form-input {
 
 .comics-wrapper article:nth-child(even) div a:hover {
   color: #449dd4;
+}
+
+.creators-wrapper {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .creators-wrapper {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .creators-wrapper {
+    -ms-grid-columns: (1fr)[1];
+        grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.creators-wrapper article a {
+  position: relative;
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #ca4242;
+  border-radius: 0.25rem;
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: unset;
+}
+
+.creators-wrapper article a::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 0;
+  height: calc(100% + 2px);
+  border-radius: inherit;
+  background-color: #ca4242;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  z-index: -1;
+}
+
+.creators-wrapper article a:hover::before {
+  right: unset;
+  left: -1px;
+  width: calc(100% + 2px);
+}
+
+.creators-wrapper article:nth-child(even) a {
+  border: 1px solid #1574af;
+}
+
+.creators-wrapper article:nth-child(even) a::before {
+  background-color: #1574af;
+}
+
+.alphabet {
+  -webkit-column-gap: 1rem;
+          column-gap: 1rem;
+  margin-top: 2rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 1024px) {
+  .alphabet {
+    -webkit-column-gap: 0.75rem;
+            column-gap: 0.75rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .alphabet {
+    -webkit-box-pack: left;
+        -ms-flex-pack: left;
+            justify-content: left;
+  }
+}
+
+.alphabet span {
+  cursor: pointer;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.alphabet span:hover {
+  color: #e1c634;
 }
 
 .pagination {
@@ -1493,6 +1596,7 @@ a {
 
 label {
   display: block;
+  letter-spacing: 0.1rem;
 }
 
 img {

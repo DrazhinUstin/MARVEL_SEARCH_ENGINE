@@ -4,6 +4,7 @@
     height: 2.5rem;
     padding: 0 1rem;
     border-radius: $radius-2;
+    background-color: $white;
     color: $black;
     font-size: 1rem;
     transition: $ease-trans;
@@ -17,7 +18,7 @@
 }
 
 select.form-input {
-    width: 11rem;
+    width: auto;
     padding: 0 0.5rem;
     text-transform: capitalize;
     cursor: pointer;
@@ -53,6 +54,14 @@ select.form-input {
             transition: $ease-trans;
         }
     }
+}
+
+.search-by-wrapper {
+    @extend %flex-center;
+    column-gap: 0.5rem;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
 }
 
 .search-form {
@@ -109,7 +118,9 @@ select.form-input {
     label {
         margin-bottom: 1rem;
         line-height: 1.2;
-        letter-spacing: $space;
+    }
+    select {
+        width: 11rem;
     }
     footer {
         @extend %flex-between;

@@ -14,6 +14,10 @@ const setupAccordion = () => {
             article: "<p>In the comics area you can watch various comics published by MARVEL. You can search for a specific comic using special filters and get information about it.</p><p>As with the characters, not all comics have a detailed description and image due to the lack of this data in the MARVEL database.</p>"
         },
         {
+            heading: "What are the creators?",
+            article: "<p>A certain number of people take part in the creation of any comic, each of whom performs a specific task. This is a writer, a penciler, a colorist, a letterer, an editor and others. If you want to watch comics by a specific author, you can do it in the creators area.</p>"
+        },
+        {
             heading: "What are the favorites?",
             article: "<p>If you liked some comic and don't want to search for it again, you can add it to your favorites. The comic will be stored there until you delete it from your favorites. You can also delete all favorites by clicking on the corresponding button on the favorites page.</p>"
         }

@@ -18,7 +18,7 @@ const setupCharactersSearch = (data) => {
         loading.classList.add('hide');
         if (data.code === 200 && data.data.results.length) {
             const charactersData = destructureCharactersData(data.data.results);
-            controller.displayData(charactersData, 0);
+            controller.displayData(charactersData);
             controller.saveSession();
         } else if (data.code === 200 && !data.data.results.length) {
             alert('Sorry, nothing was found for your search...');
@@ -34,8 +34,8 @@ const setupCharactersSearch = (data) => {
         loading.classList.add('hide');
     } else {
         input.nextElementSibling.click();
-        input.required = true;
     }
+    input.required = true;
 };
 
 export default setupCharactersSearch;

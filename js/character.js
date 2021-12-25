@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             characterData = destructureCharactersData(data.data.results);
             document.title = `${characterData[0].name} | Marvel Search Engine`;
             displayCharacter(characterData);
-            setupComicsSearch(comicsUrl, 'comicsByCharacter', {id: id, character: characterData});
+            setupComicsSearch(comicsUrl, 'comicsByCharacter', {id, character: characterData});
         } else {
             display404();
         }

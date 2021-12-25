@@ -9,6 +9,7 @@
 @import 'carousel';
 @import 'characters';
 @import 'comics';
+@import 'creators';
 @import 'pagination';
 @import 'page-header';
 @import 'page-footer';
@@ -60,6 +61,7 @@ a {
 
 label {
     display: block;
+    letter-spacing: $space;
 }
 
 img {

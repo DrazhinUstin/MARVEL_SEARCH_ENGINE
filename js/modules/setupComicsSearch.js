@@ -32,7 +32,7 @@ const setupComicsSearch = (comicsUrl, key, data) => {
         if (data.code === 200 && data.data.results.length) {
             const comicsData = destructureComicsData(data.data.results);
             controller.getFilters(filtersDOM);
-            controller.displayData(comicsData, 0);
+            controller.displayData(comicsData);
             controller.saveSession();
         } else if (data.code === 200 && !data.data.results.length) {
             alert('Sorry, nothing was found for your search...');
@@ -64,7 +64,7 @@ const setupComicsSearch = (comicsUrl, key, data) => {
     const controller = new Controller(displayComics, 12, key);
     if (data.id) {
         controller.id = data.id;
-        controller.character = data.character;
+        data.character ? controller.character = data.character : controller.creator = data.creator;
     };
     controller.setupPagination();
     if (data.data) {

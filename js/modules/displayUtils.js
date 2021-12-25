@@ -29,6 +29,15 @@ const displayComics = (data) => {
     }).join('');
 };
 
+const displayCreators = (data) => {
+    const creatorsDOM = document.querySelector('.creators-wrapper');
+    creatorsDOM.innerHTML = data.map(item => {
+        return `<article>
+                    <a href="creator.html?id=${item.id}">${item.name}</a>
+                </article>`;
+    }).join('');
+};
+
 const displayCharacter = (data) => {
     const characterDOM = document.querySelector('.article.character');
     characterDOM.innerHTML = data.map(item => {
@@ -60,9 +69,10 @@ const displayComic = (data) => {
                     ${item.issueNumber ? '<h4>Issue number: <span>' + item.issueNumber + '</span></h4>' : ''}
                     ${item.pageCount ? '<h4>Number of pages: <span>' + item.pageCount + '</span></h4>' : ''}
                     ${item.characters.length ?  '<h4>Characters:</h4><ul>' + item.characters.map(character => {
-                        const index = character.resourceURI.lastIndexOf('/')
-                        const id = character.resourceURI.slice(index + 1)
-                        return `<li><a class="btn blue" href="character.html?id=${id}">${character.name}</a></li>`
+                        return `<li><a class="btn blue" href="character.html?id=${getItemID(character.resourceURI)}">${character.name}</a></li>`
+                    }).join('') + '</ul>' : ''}
+                    ${item.creators.length ?  '<h4>Creators:</h4><ul>' + item.creators.map(creator => {
+                        return `<li><a class="btn red" href="creator.html?id=${getItemID(creator.resourceURI)}">${creator.name}, ${creator.role}</a></li>`
                     }).join('') + '</ul>' : ''}
                     <a href="${item.url}" class="border-btn yellow" target="_blank">Visit marvel profile</a>
                 </div>`;
@@ -76,6 +86,29 @@ const displayComic = (data) => {
         div.innerHTML = string;
         return div.textContent;
     }
+
+    function getItemID (url) {
+        const index = url.lastIndexOf('/');
+        return url.slice(index + 1);
+    }
+};
+
+const displayCreator = (data) => {
+    const creatorDOM = document.querySelector('.article.creator');
+    creatorDOM.innerHTML = data.map(item => {
+        return `<div>
+                    <img src="${item.image}" alt="${item.name}">
+                </div>
+                <div>
+                    <h4>Comics: <span>${item.comics}</span></h4>
+                    <h4>Series: <span>${item.series}</span></h4>
+                    <h4>Stories: <span>${item.stories}</span></h4>
+                    <h4>Events: <span>${item.events}</span></h4>
+                    <a href="${item.url}" class="border-btn yellow" target="_blank">Visit Marvel profile</a>
+                </div>`;
+    }).join('');
+    displayHeader(data[0]);
+    creatorDOM.nextElementSibling.classList.remove('hidden');
 };
 
 const displayHeader = (data) => {
@@ -138,4 +171,4 @@ const hidePreloader = () => {
     preloader.classList.add('hide');
 };
 
-export {displayCharacters, displayComics, displayCharacter, displayComic, display404, displayPagination, displayItemsCount, hidePreloader};
+export {displayCharacters, displayComics, displayCreators, displayCharacter, displayComic, displayCreator, display404, displayPagination, displayItemsCount, hidePreloader};

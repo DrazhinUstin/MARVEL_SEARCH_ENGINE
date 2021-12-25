@@ -8,14 +8,15 @@ class Controller {
         this.paginatedData = [];
         this.filters = [];
         this.step = 0;
-        this.amountPerPage = amountPerPage;
         this.func = func;
+        this.amountPerPage = amountPerPage;
         this.key = key;
     }
 
     saveSession () {
         if (this.key === 'favorites') saveToSessionStorage(this.key, {step: this.step});
         else if (this.key === 'comicsByCharacter') saveToSessionStorage(this.key, {id: this.id, character: this.character, data: this.data, step: this.step, filters: this.filters});
+        else if (this.key === 'comicsByCreator') saveToSessionStorage(this.key, {id: this.id, creator: this.creator, data: this.data, step: this.step, filters: this.filters});
         else if (this.key) saveToSessionStorage(this.key, {data: this.data, step: this.step, filters: this.filters});
     }
 
@@ -64,7 +65,7 @@ class Controller {
         });    
     }
 
-    displayData (data, step) {
+    displayData (data, step = 0) {
         this.data = data;
         this.step = step;
         displayItemsCount(this.data);

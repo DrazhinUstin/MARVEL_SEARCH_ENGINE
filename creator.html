@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marvel Search Engine</title>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../images/slide-4.jpg') no-repeat center/cover;
+        }
+    </style>
     <script src="https://kit.fontawesome.com/88b18bb1d4.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -45,19 +50,19 @@
         <div class="stages">
             <div class="section">
                 <a href="index.html"><i class="fas fa-home"></i> Home</a>
-                <a href="characters.html">Heroes</a>
+                <a href="creators.html">Creators</a>
             </div>
         </div>
         <div class="logo">
             <img src="images/Marvel_Logo.svg" alt="logo" class="logo">
-            Heroes Area
+            Creators Area
         </div>
     </header>
     <section class="section main">
         <div class="title">
             <h3></h3>
         </div>
-        <article class="article character"></article>
+        <article class="article creator"></article>
         <div class="btn-container hidden">
             <a href="#" id="apply-filters-btn" class="border-btn red">Watch comics</a>
             <a href="#" id="open-filters-btn" class="border-btn">Show filters</a>
@@ -155,6 +160,6 @@
         </section>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script type="module" src="js/character.js"></script>
+    <script type="module" src="js/creator.js"></script>
 </body>
 </html>

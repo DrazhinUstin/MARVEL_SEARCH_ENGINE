@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favorites | Marvel Search Engine</title>
+    <title>Creators Area | Marvel Search Engine</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
         .page-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../images/slide-5.jpg') no-repeat center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../images/slide-4.jpg') no-repeat center/cover;
         }
     </style>
     <script src="https://kit.fontawesome.com/88b18bb1d4.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="preloader">
-        <span></span>
-        <span>Loading</span>
+    <div class="loading">
+        <div>
+            <span></span>
+        </div>
     </div>
     <nav class="navbar">
         <div class="section">
@@ -49,23 +50,35 @@
         <div class="stages">
             <div class="section">
                 <a href="index.html"><i class="fas fa-home"></i> Home</a>
-                <a href="favorites.html">Favorites</a>
+                <a href="creators.html">Creators</a>
             </div>
         </div>
         <div class="logo">
             <img src="images/Marvel_Logo.svg" alt="logo" class="logo">
-            Favorites
+            Creators Area
         </div>
     </header>
     <section class="section main">
+        <div class="search-by-wrapper">
+            <label for="search-by-filter">Search by:</label>
+            <select id="search-by-filter" class="form-input filter">
+                <option value="nameStartsWith">all</option>
+                <option value="firstNameStartsWith" selected>first name</option>
+                <option value="middleNameStartsWith">middle name</option>
+                <option value="lastNameStartsWith">last name</option>
+            </select>
+        </div>
+        <form class="search-form">
+            <input type="text" class="form-input" placeholder="Creator name starts with..." required>
+            <button type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+        <div class="alphabet"></div>
         <div>
             <div class="items-count"></div>
-            <div class="comics-wrapper"></div>
+            <div class="creators-wrapper"></div>
             <div class="pagination"></div> 
-        </div>
-        <div class="btn-container hidden">
-            <a href="comics.html" class="border-btn">Add favorites</a>
-            <a href="#" id="clear-favorites-btn" class="border-btn red">Clear favorites</a>
         </div>
     </section>
     <footer class="page-footer">
@@ -103,6 +116,7 @@
             </p>
         </section>
     </footer>
-    <script type="module" src="js/favorites.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script type="module" src="js/creators.js"></script>
 </body>
 </html>
