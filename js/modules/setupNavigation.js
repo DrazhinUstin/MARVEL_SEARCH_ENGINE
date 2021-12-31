@@ -1,6 +1,30 @@
 import {getFromLocalStorage} from './dataUtils.js';
 
+const navLinks = [
+    {
+        "title": "home",
+        "href": "index.html"
+    },
+    {
+        "title": "heroes",
+        "href": "characters.html"
+    }, 
+    {
+        "title": "comics",
+        "href": "comics.html"
+    }, 
+    {
+        "title": "creators",
+        "href": "creators.html"
+    }, 
+    {
+        "title": "favorites",
+        "href": "favorites.html"
+    }
+];
+
 const setupNavigation = () => {
+    populateNavMenu();
     const navbar = document.querySelector('.navbar');
     const menuToggleBtn = navbar.querySelector('.nav-menu-toggle-btn');
     const favoritesCountDOM = [...document.querySelectorAll('.favorites-count')];
@@ -37,6 +61,20 @@ const setupNavigation = () => {
         button.addEventListener('click', () => window.scrollTo(0, 0));
         return button;
     }
+};
+
+const populateNavMenu = () => {
+    const navLinksDOM = [...document.querySelectorAll('.nav-menu, .footer-menu')];
+
+    navLinksDOM.forEach(menu => {
+        menu.innerHTML = navLinks.map(link => {
+            const {title, href} = link;
+            return `<li>
+                        ${title === 'favorites' ? '<span class="favorites-count">0</span>' : ''}
+                        <a href="${href}">${title}</a>
+                    </li>`;
+        }).join('');
+    }); 
 };
 
 export default setupNavigation;
